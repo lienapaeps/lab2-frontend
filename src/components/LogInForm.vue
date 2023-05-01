@@ -1,4 +1,45 @@
 <script setup>
+import router from '../router/router';
+
+import { ref, onMounted } from 'vue';
+
+//inloggen 
+function login() {
+    let btnLogin = document.querySelector(".btn--login").addEventListener("click", function () {
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+
+        fetch("http://localhost:3000/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+            .then(response => response.json())
+            .then((json) => {
+                if (json.status === "success") {
+                    router.push("/home");
+                } else {
+                    let feedback = document.querySelector(".alert");
+                    feedback.textContent = "Gebruikersnaam of wachtwoord zijn fout";
+                    feedback.classList.remove("hidden");
+                    feedback.style.backgroundColor = "#f8d7da";
+                    feedback.style.color = "#721c24";
+                }
+            })
+            .catch(error => console.log(error));
+    })
+}
+
+onMounted(() => {
+    login();
+})
+
 </script>
 
 <template>
@@ -19,7 +60,7 @@
         </div>
         <p><a href="#">Wachtwoord vergeten?</a></p>
         <div class="row">
-            <router-link class="btn" exact to="/home">Inloggen</router-link>
+            <a class="btn btn--login" href="#">Inloggen</a>
         </div>
         <div class="row">
             <a class="btn--outline" href="#">Inloggen met Google</a>

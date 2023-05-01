@@ -1,4 +1,51 @@
 <script setup>
+import router from '../router/router';
+
+import { ref, onMounted } from 'vue';
+
+function register() {
+    let btnRegister = document.querySelector(".btn--register").addEventListener("click", function () {
+        // let firstname = document.querySelector("#firstname").value;
+        // let lastname = document.querySelector("#lastname").value;
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+
+        fetch("http://localhost:3000/users/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                // firstname: firstname,
+                // lastname: lastname,
+                email: email,
+                password: password
+            })
+        })
+            .then(response => response.json())
+            .then((json) => {
+                if (json.status === "success") {
+                    router.push("/home");
+                } else {
+                    let feedback = document.querySelector(".alert");
+
+                    console.log(json);
+
+                    feedback.textContent = "Er ging iets mis bij het aanmaken van je account";
+                    feedback.classList.remove("hidden");
+                    feedback.style.backgroundColor = "#f8d7da";
+                    feedback.style.color = "#721c24";
+                }
+            })
+            .catch(error => console.log(error));
+    })
+}
+
+onMounted(() => {
+    register();
+})
+
 </script>
 
 <template>
@@ -9,14 +56,14 @@
         <div class="alert hidden">
             Here is some feedback
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <label for="firstname">Voornaam</label>
             <input type="text" id="firstname" name="firstname">
         </div>
         <div class="row">
             <label for="lastname">Achternaam</label>
             <input type="text" id="lastname" name="lastname">
-        </div>
+        </div> -->
         <div class="row">
             <label for="email">E-mail</label>
             <input type="text" id="email" name="email">
@@ -26,7 +73,7 @@
             <input type="password" id="password" name="password">
         </div>
         <div class="row">
-            <router-link class="btn" exact to="/home">Registreren</router-link>
+            <a class="btn btn--register" href="#">registreren</a>
         </div>
     </form>
 </template>
