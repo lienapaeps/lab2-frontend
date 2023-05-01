@@ -3,11 +3,19 @@
 
 <template>
     <form action="#">
-        <h1>Welkom terug</h1>
-        <p>Nog geen account? <router-link exact to="/registreer">Registreren</router-link>
+        <h1>Account aanmaken</h1>
+        <p>Al een account? <router-link exact to="/login">Inloggen</router-link>
         </p>
         <div class="alert hidden">
             Here is some feedback
+        </div>
+        <div class="row">
+            <label for="firstname">Voornaam</label>
+            <input type="text" id="firstname" name="firstname">
+        </div>
+        <div class="row">
+            <label for="lastname">Achternaam</label>
+            <input type="text" id="lastname" name="lastname">
         </div>
         <div class="row">
             <label for="email">E-mail</label>
@@ -17,12 +25,8 @@
             <label for="password">Wachtwoord</label>
             <input type="password" id="password" name="password">
         </div>
-        <p><a href="#">Wachtwoord vergeten?</a></p>
         <div class="row">
-            <router-link class="btn" exact to="/home">Inloggen</router-link>
-        </div>
-        <div class="row">
-            <a class="btn--outline" href="#">Inloggen met Google</a>
+            <router-link class="btn" exact to="/home">Registreren</router-link>
         </div>
     </form>
 </template>
