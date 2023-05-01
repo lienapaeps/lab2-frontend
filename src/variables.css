@@ -1,0 +1,15 @@
+:root {
+    --offWhite: #F8F8F8;
+    --offBlack900: #171717;
+    --offBlack500: #666666; 
+    --offBlack100: #E3E3E3; 
+
+    --accentGreen: #B9E24E;
+    --deepSeaGreen800: #075F4A;
+    --deepSeaGreen500: #12B787;
+    --lightGreen100: #D2F9E3;
+
+    --semanticRed: #C82424;
+    --semanticBlue: #D2EBF9;
+    --semanticOrange: #E39A2C;
+}
