@@ -26,7 +26,8 @@ function login() {
                     router.push("/home");
                 } else {
                     let feedback = document.querySelector(".alert");
-                    feedback.textContent = "Gebruikersnaam of wachtwoord zijn fout";
+                    // console.log(json.message);
+                    feedback.textContent = json.message;
                     feedback.classList.remove("hidden");
                     feedback.style.backgroundColor = "#f8d7da";
                     feedback.style.color = "#721c24";
@@ -52,11 +53,11 @@ onMounted(() => {
         </div>
         <div class="row">
             <label for="email">E-mail</label>
-            <input type="text" id="email" name="email">
+            <input type="text" id="email" name="email" required>
         </div>
         <div class="row">
             <label for="password">Wachtwoord</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" required>
         </div>
         <p><a href="#">Wachtwoord vergeten?</a></p>
         <div class="row">

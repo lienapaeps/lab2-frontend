@@ -5,8 +5,8 @@ import { ref, onMounted } from 'vue';
 
 function register() {
     let btnRegister = document.querySelector(".btn--register").addEventListener("click", function () {
-        // let firstname = document.querySelector("#firstname").value;
-        // let lastname = document.querySelector("#lastname").value;
+        let firstname = document.querySelector("#firstname").value;
+        let lastname = document.querySelector("#lastname").value;
         let email = document.querySelector("#email").value;
         let password = document.querySelector("#password").value;
 
@@ -17,8 +17,8 @@ function register() {
             },
             mode: "cors",
             body: JSON.stringify({
-                // firstname: firstname,
-                // lastname: lastname,
+                firstname: firstname,
+                lastname: lastname,
                 email: email,
                 password: password
             })
@@ -30,9 +30,9 @@ function register() {
                 } else {
                     let feedback = document.querySelector(".alert");
 
-                    console.log(json);
+                    // console.log(json);
 
-                    feedback.textContent = "Er ging iets mis bij het aanmaken van je account";
+                    feedback.textContent = json.message;
                     feedback.classList.remove("hidden");
                     feedback.style.backgroundColor = "#f8d7da";
                     feedback.style.color = "#721c24";
@@ -56,21 +56,21 @@ onMounted(() => {
         <div class="alert hidden">
             Here is some feedback
         </div>
-        <!-- <div class="row">
+        <div class="row">
             <label for="firstname">Voornaam</label>
-            <input type="text" id="firstname" name="firstname">
+            <input type="text" id="firstname" name="firstname" required>
         </div>
         <div class="row">
             <label for="lastname">Achternaam</label>
-            <input type="text" id="lastname" name="lastname">
-        </div> -->
+            <input type="text" id="lastname" name="lastname" required>
+        </div>
         <div class="row">
             <label for="email">E-mail</label>
-            <input type="text" id="email" name="email">
+            <input type="text" id="email" name="email" required>
         </div>
         <div class="row">
             <label for="password">Wachtwoord</label>
-            <input type="password" id="password" name="password">
+            <input type="text" id="password" name="password" required>
         </div>
         <div class="row">
             <a class="btn btn--register" href="#">registreren</a>
