@@ -30,7 +30,7 @@ function login() {
                     feedback.textContent = json.message;
                     feedback.classList.remove("hidden");
                     feedback.style.backgroundColor = "#f8d7da";
-                    feedback.style.color = "#721c24";
+                    feedback.style.color = "#C82424";
                 }
             })
             .catch(error => console.log(error));

@@ -35,7 +35,12 @@ function register() {
                     feedback.textContent = json.message;
                     feedback.classList.remove("hidden");
                     feedback.style.backgroundColor = "#f8d7da";
-                    feedback.style.color = "#721c24";
+                    feedback.style.color = "#C82424";
+
+                    // make screen bigger when error and scroll to top
+                    window.scrollTo(0, 0);
+                    document.querySelector(".row").style.height = "110vh";
+                    document.querySelector(".row").style.overflow = "hidden";
                 }
             })
             .catch(error => console.log(error));

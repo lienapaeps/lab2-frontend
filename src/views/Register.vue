@@ -40,7 +40,6 @@ import RegisterForm from '../components/RegisterForm.vue';
     }
 
     .row {
-        height: 100vh;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -49,7 +48,6 @@ import RegisterForm from '../components/RegisterForm.vue';
 
     .register--image img {
         width: 100%;
-        height: 100vh;
         object-fit: cover;
     }
 
