@@ -49,14 +49,15 @@ document.querySelectorAll(".nav__item").forEach((ele) =>
 <style scoped>
 /*  mobile */
 nav {
-    width: 30%;
+    width: 25%;
+    float: left;
     height: 100%;
     bottom: 0;
     left: 0;
     background-color: var(--deepSeaGreen800);
     overflow: hidden;
     position: fixed;
-    z-index: -1;
+    z-index: 1;
 }
 .nav__menu {
     display: flex;

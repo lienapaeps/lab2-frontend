@@ -60,7 +60,6 @@ label {
 p {
     /* light: 300, regular: 400, medium: 500, bold: 700 */
     font-family: 'Roboto', sans-serif;
-    line-height: 150%;
 }
 
 a {
@@ -68,6 +67,13 @@ a {
     font-weight: 400;
     text-decoration: none;
     color: var(--offWhite)
+}
+
+.card-text{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: small;
+    color: var(--offBlack500);
 }
 
 .btn {
