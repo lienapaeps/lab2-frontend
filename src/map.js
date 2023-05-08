@@ -16,7 +16,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 let boerderijIcon = L.icon({
     iconUrl: 'src/assets/icon-boerderij.svg',
-    iconSize: [35, 35],
+    iconSize: [40, 40],
     iconAnchor: [10, 10],
     popupAnchor: [7, -5]
 });
@@ -40,14 +40,23 @@ fetch(url)
     })
     .catch(error => console.log(error));
 
-
-// const marker = L.marker([50.9637819, 4.5256353], {icon: boerderijIcon}).addTo(myMap);
-// marker.bindPopup(
-//     "<b>Boerderij Terrijn</b><br><a href='veld.html'>Meer info</a>"
-// ).openPopup();
-
+// search bar and zoom buttons
 L.Control.geocoder().addTo(myMap);
+
+// position search bar in the center of screen
+document.querySelector('.leaflet-control-geocoder').style.top = '20px';
+document.querySelector('.leaflet-control-geocoder').style.right = '45px';
+
+// make search bar expanded
+document.querySelector('.leaflet-control-geocoder').classList.add('leaflet-control-geocoder-expanded');
+
+//change position of zoom buttons
+document.querySelector('.leaflet-control-zoom').style.top = '100px';
+document.querySelector('.leaflet-control-zoom').style.left = '45px';
+
 // change width of search bar
-document.querySelector('.leaflet-control-geocoder-form input').style.width = '200px';
+document.querySelector('.leaflet-control-geocoder-form input').style.width = '400px';
+document.querySelector('.leaflet-control-geocoder-form input').style.height = '40px';
+
 // change placeholder of search bar
-document.querySelector('.leaflet-control-geocoder-form input').placeholder = 'Zoek een locatie';
+document.querySelector('.leaflet-control-geocoder-form input').placeholder = 'Zoeken';
