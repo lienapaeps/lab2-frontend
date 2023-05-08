@@ -23,7 +23,7 @@ function login() {
             .then(response => response.json())
             .then((json) => {
                 if (json.status === "success") {
-                    router.push("/home");
+                    router.push("/");
                 } else {
                     let feedback = document.querySelector(".alert");
                     // console.log(json.message);
