@@ -22,7 +22,7 @@ export default {
         // console.log(veldId);
 
         // fetch naar api fields
-        const getField = "http://localhost:3000/api/v1/fields/" + veldId;
+        const getField = "https://plant-en-pluk.onrender.com/api/v1/fields/" + veldId;
         fetch(getField)
             .then(response => response.json())
             .then(data => {

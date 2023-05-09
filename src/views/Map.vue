@@ -61,7 +61,7 @@ export default {
         });
 
         // add a marker for each farm in the database via api fetch
-        const url = "http://localhost:3000/api/v1/farms";
+        const url = "https://plant-en-pluk.onrender.com/api/v1/farms";
         fetch(url)
             .then(response => response.json())
             .then(data => {

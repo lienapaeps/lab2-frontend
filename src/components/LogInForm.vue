@@ -9,7 +9,7 @@ function login() {
         let email = document.querySelector("#email").value;
         let password = document.querySelector("#password").value;
 
-        fetch("http://localhost:3000/users/login", {
+        fetch("https://plant-en-pluk.onrender.com/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

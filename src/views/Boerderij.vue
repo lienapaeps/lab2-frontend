@@ -28,10 +28,11 @@ export default {
         // console.log(boerderijId);
 
         // fetch naar api farms
-        const getFarm = "http://localhost:3000/api/v1/farms/" + boerderijId;
+        const getFarm = "https://plant-en-pluk.onrender.com/api/v1/farms/" + boerderijId;
         fetch(getFarm)
             .then(response => response.json())
             .then(data => {
+                // console.log(data);
                 // console.log(data.data.farm);
                 const farm = data.data.farm;
 
@@ -69,11 +70,14 @@ export default {
                 console.log(error);
             });
 
-        const getFields = "http://localhost:3000/api/v1/fields/farm/" + boerderijId;
+        const getFields = "https://plant-en-pluk.onrender.com/api/v1/fields/farm/" + boerderijId;
+        console.log(getFields);
+
         fetch(getFields)
             .then(response => response.json())
             .then(data => {
-                console.log(data.data.fields);
+                console.log(data);
+                // console.log(data.data.fields);
                 const field = data.data.fields;
 
                 // loop over fields
