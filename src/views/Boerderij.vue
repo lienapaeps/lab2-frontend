@@ -96,6 +96,9 @@ export default {
 
                     document.querySelector('#velden').appendChild(card);
                 }
+            })
+            .catch(error => {
+                console.log(error);
             });
     },
     onBeforeUnmount() {
