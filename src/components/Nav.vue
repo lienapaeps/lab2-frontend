@@ -12,33 +12,30 @@ document.querySelectorAll(".nav__item").forEach((ele) =>
     })
 );
 
-
-
-
 </script>
 
 <template>
     <nav>
         <div class="nav__menu">
-            <img class="logo__nav" src="src/assets/EmblemWhite.svg" alt="">
+            <img class="logo__nav" src="/EmblemWhite.svg" alt="">
             <div class="nav__item">
-                <img class="emblem" src="src/assets/HomeEmblem.svg" alt="home">
+                <img class="emblem" src="/HomeEmblem.svg" alt="home">
                 <router-link exact to="/">Home</router-link>
             </div>
             <div class="nav__item">
-                <img class="emblem" src="src/assets/VideosEmblem.svg" alt="videos">
+                <img class="emblem" src="/VideosEmblem.svg" alt="videos">
                 <router-link exact to="/videos">Video's</router-link>
             </div>
             <div class="nav__item">
-                <img class="emblem" src="src/assets/VeldenEmblem.svg" alt="velden">
+                <img class="emblem" src="/VeldenEmblem.svg" alt="velden">
                 <router-link exact to="/velden">Velden</router-link>
             </div>
             <div class="nav__item">
-                <img class="emblem" src="src/assets/MailEmblem.svg" alt="inbox">
+                <img class="emblem" src="/MailEmblem.svg" alt="inbox">
                 <router-link exact to="/inbox">Inbox</router-link>
             </div>
             <div class="nav__item">
-                <img class="emblem" src="src/assets/ProfileEmblem.svg" alt="profile">
+                <img class="emblem" src="/ProfileEmblem.svg" alt="profile">
                 <router-link exact to="/profiel">Profiel</router-link>
             </div>
         </div>

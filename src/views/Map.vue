@@ -2,9 +2,9 @@
     <div id="mapContainer"></div>
 
     <div class="arrow">
-        <a class="back" href="/velden">
+        <router-link exact to="/velden">
             <img src="./../assets/left-arrow.svg" alt="arrow" />
-        </a>
+        </router-link>
     </div>
 </template>
   
@@ -72,8 +72,8 @@ export default {
                 farms.forEach(farm => {
                     const marker = L.marker([farm.location.latitude, farm.location.longitude], { icon: boerderijIcon }).addTo(this.map);
                     marker.bindPopup(
-                        // link naar pagina met meer info over de boerderij via id
-                        `<b>${farm.name}</b><br><a href='boerderij.html?id=${farm._id}'>Meer info</a>`
+                        // vue router link naar pagina met meer info over de boerderij via id in de url
+                        `<b>${farm.name}</b><br><a href='boerderij/${farm._id}'>Meer info</a>`
                     ).openPopup();
                 });
             })

@@ -7,6 +7,7 @@ import Velden from '../views/Velden.vue';
 import Inbox from '../views/Inbox.vue';
 import Profiel from '../views/Profiel.vue';
 import Map from '../views/Map.vue';
+import Boerderij from '../views/Boerderij.vue';
 
 const routes = [
   { path: "/", component: Home },
@@ -17,6 +18,7 @@ const routes = [
   { path: "/profiel", component: Profiel },
   { path: "/registreer", component: Register },
   { path: "/map", component: Map },
+  { path: "/boerderij/:id", component: Boerderij },
 ];
 
 const router = createRouter({
