@@ -8,6 +8,7 @@ import Inbox from '../views/Inbox.vue';
 import Profiel from '../views/Profiel.vue';
 import Map from '../views/Map.vue';
 import Boerderij from '../views/Boerderij.vue';
+import Veld from '../views/Veld.vue';
 
 const routes = [
   { path: "/", component: Home },
@@ -19,6 +20,7 @@ const routes = [
   { path: "/registreer", component: Register },
   { path: "/map", component: Map },
   { path: "/boerderij/:id", component: Boerderij },
+  { path: "/veld/:id", component: Veld },
 ];
 
 const router = createRouter({

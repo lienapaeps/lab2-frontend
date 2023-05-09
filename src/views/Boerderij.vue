@@ -2,7 +2,7 @@
     <div id="mapContainer"></div>
 
     <div class="content">
-        <a class="back" href="/map">Terug</a>
+        <a href="/map">Terug</a>
         <h1 id="boerderijnaam"></h1>
         <p id="adres"></p>
 
@@ -28,8 +28,8 @@ export default {
         // console.log(boerderijId);
 
         // fetch naar api farms
-        const url = "http://localhost:3000/api/v1/farms/" + boerderijId;
-        fetch(url)
+        const getFarm = "http://localhost:3000/api/v1/farms/" + boerderijId;
+        fetch(getFarm)
             .then(response => response.json())
             .then(data => {
                 // console.log(data.data.farm);
@@ -69,11 +69,30 @@ export default {
                 console.log(error);
             });
 
+        const getFields = "http://localhost:3000/api/v1/fields/farm/" + boerderijId;
+        fetch(getFields)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.data.fields);
+                const field = data.data.fields;
 
+                // loop over fields
+                for (let i = 0; i < field.length; i++) {
+                    // console.log(field[i].name);
 
+                    let card = document.createElement('div');
+                    card.classList.add('veld');
+                    card.innerHTML = `
+                    <h3>${field[i].name}</h3>
+                    <p>${field[i].owners}</p>
+                    <p>${field[i].size} m²</p>
+                    <p>${field[i].crops}</p>
+                    <a style="color: var(--deepSeaGreen500)" href="/veld/${field[i]._id}">Huren</a>
+                    `;
 
-
-
+                    document.querySelector('#velden').appendChild(card);
+                }
+            });
     },
     onBeforeUnmount() {
         if (this.map) {
@@ -97,7 +116,7 @@ export default {
     margin-top: 1rem;
 }
 
-a.back {
+a {
     color: var(--deepSeaGreen500);
 }
 
