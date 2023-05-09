@@ -1,20 +1,21 @@
 <script setup>
 import router from '../router/router';
-
-//add classlist active to current view
-document.querySelectorAll(".nav__item").forEach((ele) =>
-    ele.addEventListener("click", function (event) {
-        event.preventDefault();
-        document
-            .querySelectorAll(".nav__item")
-            .forEach((ele) => ele.classList.remove("active"));
-        this.classList.add("active")
+//when click on button, remove nav
+window.onload = function () {
+    const nav = document.querySelector('nav');
+    const burger = document.querySelector('.burger');
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('nav__menu--hidden');
+        burger.classList.toggle('burger--active');
+        console.log('test');
     })
-);
+    ;
+}
 
 </script>
 
 <template>
+    <img class="burger" src="../assets/Hamburger.svg" alt="menu">
     <nav>
         <div class="nav__menu">
             <img class="logo__nav" src="/EmblemWhite.svg" alt="">
@@ -46,15 +47,45 @@ document.querySelectorAll(".nav__item").forEach((ele) =>
 <style scoped>
 /*  mobile */
 nav {
-    width: 25%;
     float: left;
     height: 100%;
+    width: 100%;
     bottom: 0;
     left: 0;
     background-color: var(--deepSeaGreen800);
     overflow: hidden;
     position: fixed;
-    z-index: 1;
+    opacity: 0;
+}
+
+.nav__menu--hidden {
+    opacity: 1;
+}  
+
+.burger{
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    z-index: 100;
+    width: 30px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.burger--active{
+    filter: brightness(0) saturate(100%)invert(99%) sepia(1%) saturate(7485%) hue-rotate(173deg) brightness(127%) contrast(95%);
+}
+
+.test{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
 }
 
 .nav__menu {
@@ -99,7 +130,46 @@ nav {
     margin-bottom: 80px;
 }
 
+.hamburger .bar, .hamburger::before, .hamburger::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: #000;
+    margin: 6px 0;
+    transition: 0.4s;
+    border-radius: 40px;
+    z-index: 100;
+}
+
 
 /* Desktop */
 @media (min-width: 992px) {}
+
+@media (min-width: 692px) {
+    nav {
+    width: 25%;
+    float: left;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: var(--deepSeaGreen800);
+    overflow: hidden;
+    position: fixed;
+    z-index: 1;
+    opacity: 1;
+}
+
+.test{
+    opacity: 0;
+}
+
+.nav__menu--hidden {
+    opacity: 1;
+}
+
+.burger{
+    opacity: 0;
+}
+}
 </style>
