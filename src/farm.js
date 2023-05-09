@@ -1,4 +1,4 @@
-const apiKey = "pk.eyJ1IjoicDY2bGllbmEiLCJhIjoiY2xoN2ZsMzZmMGZvczNtcWpsbmcwZ3JoNSJ9.B6OPjZwsVvDj5jiR73-4qw";
+// const apiKey = "pk.eyJ1IjoicDY2bGllbmEiLCJhIjoiY2xoN2ZsMzZmMGZvczNtcWpsbmcwZ3JoNSJ9.B6OPjZwsVvDj5jiR73-4qw";
 
 // toon map op de locatie van de id die in de url staat
 const urlParams = new URLSearchParams(window.location.search);
