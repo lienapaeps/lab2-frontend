@@ -20,8 +20,7 @@
 .searchbar {
     background-color: #fff;
     text-align: left;
-    padding: 1rem 3rem;
-    width: 200%;
+    padding: 1rem 2rem;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(1, 1, 1, 0.1);
     display: flex;

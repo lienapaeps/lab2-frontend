@@ -23,9 +23,9 @@ import SearchBar from './../components/SearchBar.vue';
 
 .content {
     position: absolute;
-    /* overflow: hidden; */
-    padding: 1rem;
-    margin-left: 30%;
+    top: 5%;
+    margin-left: 25%;
+    width: 70%;
 }
 
 /*  desktop */
