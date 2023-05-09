@@ -9,10 +9,10 @@
 </template>
   
 <script>
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-import 'leaflet-search/dist/leaflet-search.min.css';
+// import 'leaflet-search/dist/leaflet-search.min.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js'
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css'
 

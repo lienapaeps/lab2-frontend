@@ -3,6 +3,14 @@
 
     <div class="content">
         <a class="back" href="#">Terug</a>
+        <h1 id="boerderijnaam"></h1>
+        <h3>Jouw gekozen veld</h3>
+        <p id="veldnaam"></p>
+        <h3>Beschikbare gewassen</h3>
+        <ul>
+            <li>Wortel</li>
+            <li>Aardappelen</li>
+        </ul>
     </div>
 </template>
 
@@ -26,7 +34,7 @@ export default {
         fetch(getField)
             .then(response => response.json())
             .then(data => {
-                console.log(data.data.field);
+                // console.log(data.data.field);
                 const field = data.data.field;
 
                 // map toevoegen en inzoomen op loactie van veld
@@ -46,16 +54,59 @@ export default {
 
                 const polygon = L.polygon(polygonArray, {
                     color: '#12B787',
-                    fillColor: '#A8F2D3',
-                    fillOpacity: 0.5
+                    fillColor: '#12B787',
+                    fillOpacity: 1
                 }).addTo(this.map);
+
+                polygon.bringToFront();
 
                 polygon.bindPopup(field.name);
 
                 let backLink = document.querySelector('.back');
                 // change href of backlink
                 backLink.href = `/boerderij/${field.farmId}`;
+
+                let veldNaam = document.querySelector('#veldnaam');
+                veldNaam.innerHTML = field.name;
+
+                // fetch naar api farms
+                let farmId = field.farmId;
+
+                const getFarmById = "https://plant-en-pluk.onrender.com/api/v1/farms/" + farmId;
+                fetch(getFarmById)
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log(data.data.farm);
+                        const farm = data.data.farm;
+
+                        // polygon tekenen rond veld
+                        let polygonArray = [];
+                        for (let i = 0; i < field.polygon.length; i++) {
+                            polygonArray.push([farm.polygon[i].latitude, farm.polygon[i].longitude]);
+                        }
+
+                        // console.log(polygonArray);
+
+                        const polygon = L.polygon(polygonArray, {
+                            color: '#A8F2D3',
+                            fillColor: '#A8F2D3',
+                            fillOpacity: 1
+                        }).addTo(this.map);
+
+                        polygon.bringToBack();
+
+                        let boerderijNaam = document.querySelector('#boerderijnaam');
+                        boerderijNaam.innerHTML = farm.name;
+
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            })
+            .catch(error => {
+                console.log(error);
             });
+
     },
     onBeforeUnmount() {
         if (this.map) {
