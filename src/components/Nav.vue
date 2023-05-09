@@ -3,13 +3,13 @@ import router from '../router/router';
 
 //add classlist active to current view
 document.querySelectorAll(".nav__item").forEach((ele) =>
-  ele.addEventListener("click", function (event) {
-    event.preventDefault();
-    document
-      .querySelectorAll(".nav__item")
-      .forEach((ele) => ele.classList.remove("active"));
-    this.classList.add("active")
-  })
+    ele.addEventListener("click", function (event) {
+        event.preventDefault();
+        document
+            .querySelectorAll(".nav__item")
+            .forEach((ele) => ele.classList.remove("active"));
+        this.classList.add("active")
+    })
 );
 
 
@@ -23,7 +23,7 @@ document.querySelectorAll(".nav__item").forEach((ele) =>
             <img class="logo__nav" src="src/assets/EmblemWhite.svg" alt="">
             <div class="nav__item">
                 <img class="emblem" src="src/assets/HomeEmblem.svg" alt="home">
-                <router-link exact to="/home">Home</router-link>
+                <router-link exact to="/">Home</router-link>
             </div>
             <div class="nav__item">
                 <img class="emblem" src="src/assets/VideosEmblem.svg" alt="videos">
@@ -59,6 +59,7 @@ nav {
     position: fixed;
     z-index: 1;
 }
+
 .nav__menu {
     display: flex;
     flex-direction: column;
@@ -82,12 +83,13 @@ nav {
     font-weight: bold;
 }
 
-.emblem{
+.emblem {
     width: 20px;
     margin-right: 6px;
     filter: brightness(0) saturate(100%)invert(99%) sepia(1%) saturate(7485%) hue-rotate(173deg) brightness(127%) contrast(95%);
 }
-.active .emblem{
+
+.active .emblem {
     width: 20px;
     margin-right: 6px;
     filter: brightness(0) saturate(100%) invert(29%) sepia(18%) saturate(2138%) hue-rotate(118deg) brightness(90%) contrast(94%);

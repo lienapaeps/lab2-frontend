@@ -7,8 +7,10 @@ import Velden from '../views/Velden.vue';
 import Inbox from '../views/Inbox.vue';
 import Profiel from '../views/Profiel.vue';
 
+
+
 const routes = [
-  { path: "/home", component: Home },
+  { path: "/", component: Home },
   { path: "/videos", component: Videos },
   { path: "/login", component: LogIn },
   { path: "/velden", component: Velden },
