@@ -6,8 +6,7 @@ import Videos from '../views/Videos.vue';
 import Velden from '../views/Velden.vue';
 import Inbox from '../views/Inbox.vue';
 import Profiel from '../views/Profiel.vue';
-
-
+import Map from '../views/Map.vue';
 
 const routes = [
   { path: "/", component: Home },
@@ -17,6 +16,7 @@ const routes = [
   { path: "/inbox", component: Inbox },
   { path: "/profiel", component: Profiel },
   { path: "/registreer", component: Register },
+  { path: "/map", component: Map },
 ];
 
 const router = createRouter({

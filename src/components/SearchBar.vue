@@ -6,7 +6,7 @@
         <div class="searchIcon">
             <img src="./../assets/SearchEmblem.svg" alt="search">
         </div>
-        <a class="search" href="./../map.html">Zoeken naar boerderijen</a>
+        <a class="search" href="/map">Zoeken naar boerderijen</a>
     </div>
 </template>
 

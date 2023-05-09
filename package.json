@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "leaflet": "^1.9.3",
     "leaflet-control-custom": "^1.0.0",
     "leaflet-control-geocoder": "^2.4.0",
     "vue": "^3.2.47",
@@ -17,6 +16,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
+    "@vue-leaflet/vue-leaflet": "^0.9.0",
+    "leaflet": "^1.9.3",
     "vite": "^4.3.2"
   }
 }
