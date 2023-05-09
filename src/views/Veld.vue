@@ -81,7 +81,7 @@ export default {
 
                         // polygon tekenen rond veld
                         let polygonArray = [];
-                        for (let i = 0; i < field.polygon.length; i++) {
+                        for (let i = 0; i < farm.polygon.length; i++) {
                             polygonArray.push([farm.polygon[i].latitude, farm.polygon[i].longitude]);
                         }
 
