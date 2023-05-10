@@ -56,10 +56,12 @@ nav {
     overflow: hidden;
     position: fixed;
     opacity: 0;
+    z-index: -99;
 }
 
 .nav__menu--hidden {
     opacity: 1;
+    z-index: 99;
 }  
 
 .burger{

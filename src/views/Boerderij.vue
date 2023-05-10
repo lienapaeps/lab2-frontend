@@ -130,6 +130,29 @@ export default {
 <style scoped>
 /*  mobile */
 #mapContainer {
+    width: 100%;
+    height: 350px;
+}
+
+.content {
+    padding-left: 1rem;
+    margin-top: 1rem;
+}
+
+.card-veld{
+    background-color: white;
+    margin-top: 10px;
+    padding: 3%;
+}
+
+a {
+    color: var(--deepSeaGreen500);
+}
+
+/*  desktop */
+@media (min-width: 992px) {}
+@media (min-width: 692px) {
+    #mapContainer {
     width: 75%;
     height: 350px;
     margin-left: 25%;
@@ -140,11 +163,5 @@ export default {
     padding-left: 1rem;
     margin-top: 1rem;
 }
-
-a {
-    color: var(--deepSeaGreen500);
 }
-
-/*  desktop */
-@media (min-width: 992px) {}
 </style>
