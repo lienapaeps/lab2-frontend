@@ -4,7 +4,7 @@ import Nav from './components/Nav.vue'
 
 <template>
   <!-- toon overal de nav behalve bij de login pagina en de register pagina en de map pagina -->
-  <Nav v-if="$route.path !== '/login' && $route.path !== '/register' && $route.path !== '/map'" />
+  <Nav v-if="$route.path !== '/login' && $route.path !== '/registreer' && $route.path !== '/map'" />
   <router-view></router-view>
 </template>
 

@@ -15,6 +15,7 @@ import L from "leaflet";
 // import 'leaflet-search/dist/leaflet-search.min.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js'
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css'
+import router from "../router/router";
 
 export default {
     name: "LeafletMap",
@@ -62,7 +63,11 @@ export default {
 
         // add a marker for each farm in the database via api fetch
         const url = "https://plant-en-pluk.onrender.com/api/v1/farms";
-        fetch(url)
+        fetch(url, {
+            'headers': {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 // console.log(data);
@@ -77,7 +82,10 @@ export default {
                     ).openPopup();
                 });
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                router.push('/login')
+            });
     },
     onBeforeUnmount() {
         if (this.map) {

@@ -31,7 +31,11 @@ export default {
 
         // fetch naar api fields
         const getField = "https://plant-en-pluk.onrender.com/api/v1/fields/" + veldId;
-        fetch(getField)
+        fetch(getField, {
+            'headers': {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 // console.log(data.data.field);
@@ -73,7 +77,11 @@ export default {
                 let farmId = field.farmId;
 
                 const getFarmById = "https://plant-en-pluk.onrender.com/api/v1/farms/" + farmId;
-                fetch(getFarmById)
+                fetch(getFarmById, {
+                    'headers': {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
                     .then(response => response.json())
                     .then(data => {
                         // console.log(data.data.farm);
@@ -101,10 +109,12 @@ export default {
                     })
                     .catch(error => {
                         console.log(error);
+                        window.location.href = "/login";
                     });
             })
             .catch(error => {
                 console.log(error);
+                window.location.href = "/login";
             });
 
     },

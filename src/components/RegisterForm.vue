@@ -26,6 +26,11 @@ function register() {
             .then(response => response.json())
             .then((json) => {
                 if (json.status === "success") {
+
+                    // web token
+                    let token = json.data.token;
+                    localStorage.setItem("token", token);
+
                     router.push("/");
                 } else {
                     let feedback = document.querySelector(".alert");
@@ -56,7 +61,7 @@ onMounted(() => {
 <template>
     <form action="#">
         <h1>Account aanmaken</h1>
-        <p>Al een account? <router-link exact to="/login">Inloggen</router-link>
+        <p>Al een account? <router-link class="text" exact to="/login">Inloggen</router-link>
         </p>
         <div class="alert hidden">
             Here is some feedback
@@ -75,7 +80,7 @@ onMounted(() => {
         </div>
         <div class="row">
             <label for="password">Wachtwoord</label>
-            <input type="text" id="password" name="password" required>
+            <input type="password" id="password" name="password" required>
         </div>
         <div class="row">
             <a class="btn btn--register" href="#">registreren</a>
@@ -100,5 +105,10 @@ label {
 
 .row {
     margin-top: 1rem;
+}
+
+a.text {
+    color: var(--deepSeaGreen800);
+    text-decoration: underline;
 }
 </style>

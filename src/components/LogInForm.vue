@@ -23,6 +23,11 @@ function login() {
             .then(response => response.json())
             .then((json) => {
                 if (json.status === "success") {
+
+                    // web token
+                    let token = json.data.token;
+                    localStorage.setItem("token", token);
+
                     router.push("/");
                 } else {
                     let feedback = document.querySelector(".alert");
@@ -46,7 +51,7 @@ onMounted(() => {
 <template>
     <form action="#">
         <h1>Welkom terug</h1>
-        <p>Nog geen account? <router-link exact to="/registreer">Registreren</router-link>
+        <p>Nog geen account? <router-link class="text" exact to="/registreer">Registreren</router-link>
         </p>
         <div class="alert hidden">
             Here is some feedback
@@ -86,5 +91,10 @@ label {
 
 .row {
     margin-top: 1rem;
+}
+
+a.text {
+    color: var(--deepSeaGreen800);
+    text-decoration: underline;
 }
 </style>
