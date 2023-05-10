@@ -1,9 +1,11 @@
 <script setup>
+if (!localStorage.getItem('token')) {
+    window.location.href = "/login";
+}
 
 </script>
 
-<template>
-</template>
+<template></template>
 
 <style scoped>
 /*  mobile */

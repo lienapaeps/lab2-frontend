@@ -1,6 +1,10 @@
 <script setup>
 import SearchBar from './../components/SearchBar.vue';
 
+if (!localStorage.getItem('token')) {
+    window.location.href = "/login";
+}
+
 </script>
 
 <template>

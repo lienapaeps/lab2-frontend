@@ -1,5 +1,10 @@
 <script setup>
 import Card from '../components/Card.vue'
+
+if (!localStorage.getItem('token')) {
+    window.location.href = "/login";
+}
+
 </script>
 
 <template>
@@ -9,9 +14,9 @@ import Card from '../components/Card.vue'
 
             <p>Recent</p>
             <div class="card-reel">
-            <Card />
-            <Card />
-        </div>
+                <Card />
+                <Card />
+            </div>
         </div>
     </div>
 </template>
@@ -19,18 +24,18 @@ import Card from '../components/Card.vue'
 <style scoped>
 /*  mobile */
 
-.content{
+.content {
     position: absolute;
     top: 5%;
     margin-left: 25%;
     width: 70%;
 }
-.card-reel{
+
+.card-reel {
     display: flex;
     flex-direction: row;
 }
 
 /*  desktop */
 @media (min-width: 992px) {}
-
 </style>

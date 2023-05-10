@@ -1,5 +1,10 @@
 <script setup>
 import VeldForm from '../components/VeldForm.vue';
+
+if (!localStorage.getItem('token')) {
+    window.location.href = "/login";
+}
+
 </script>
 
 <template>
