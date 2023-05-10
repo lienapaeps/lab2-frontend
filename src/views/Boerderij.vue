@@ -6,8 +6,8 @@
         <h1 id="boerderijnaam"></h1>
         <p id="adres"></p>
 
+        <h2>Velden</h2>
         <div id="velden">
-            <h2>Velden</h2>
             <div class="card-veld">
                 <h3 id="veldnaam"></h3>
                 <p id="eigenaars"></p>
@@ -101,14 +101,16 @@ export default {
                     let card = document.querySelector('.card-veld').cloneNode(true);
                     card.querySelector('#veldnaam').innerHTML = field[i].name;
                     card.querySelector('#eigenaars').innerHTML = field[i].owners;
-                    card.querySelector('#grootte').innerHTML = field[i].size + ' m²';
+                    card.querySelector('#grootte').innerHTML = field[i].size + 'm²';
                     card.querySelector('#crops').innerHTML = field[i].crops;
+
+                    card.setAttribute('style', 'width:70%;background-color: #fff; margin-right: 10px; margin-bottom: 1rem; padding: 1rem; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);');
 
                     // add link to rent field in card
                     let link = document.createElement('a');
                     link.setAttribute('href', '/veld/' + field[i]._id);
-                    link.setAttribute('style', 'color: var(--deepSeaGreen500)');
                     link.innerHTML = 'Huren';
+                    link.classList.add('btn');
                     card.appendChild(link);
 
                     document.querySelector('#velden').appendChild(card);
@@ -131,26 +133,39 @@ export default {
 /*  mobile */
 #mapContainer {
     width: 100%;
-    height: 350px;
+    height: 300px;
+}
+
+#velden{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.btn{
+    background-color: var(--deepSeaGreen500);
+    color: var(--offWhite);
 }
 
 .content {
     padding-left: 1rem;
+    padding-right: 1rem;
     margin-top: 1rem;
 }
 
-.card-veld{
-    background-color: white;
-    margin-top: 10px;
-    padding: 3%;
+#veldnaam{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-a {
-    color: var(--deepSeaGreen500);
-}
 
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    #velden{
+        display: flex;
+        flex-direction: row;
+    }
+}
 @media (min-width: 692px) {
     #mapContainer {
     width: 75%;
