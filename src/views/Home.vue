@@ -5,7 +5,7 @@ import Card from '../components/Card.vue'
 <template>
     <div class="container">
         <div class="content">
-            <h1>Welkom terug, Bert</h1>
+            <h1 class="title">Welkom terug, Bert</h1>
 
             <p>Recent</p>
             <div class="card-reel">
@@ -19,7 +19,10 @@ import Card from '../components/Card.vue'
 <style scoped>
 /*  mobile */
 
-.content{
+
+/*  desktop */
+@media (min-width: 692px) {
+    .content{
     position: absolute;
     top: 5%;
     margin-left: 25%;
@@ -29,8 +32,13 @@ import Card from '../components/Card.vue'
     display: flex;
     flex-direction: row;
 }
+}
 
-/*  desktop */
-@media (min-width: 992px) {}
+@media (max-width: 992px) {
+.card-reel{
+    display: flex;
+    flex-direction: column;
+}
+}
 
 </style>
