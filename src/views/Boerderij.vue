@@ -10,7 +10,7 @@
             <h2>Velden</h2>
             <div class="card-veld">
                 <h3 id="veldnaam"></h3>
-                <p id="eigenaars"></p>
+                <p id="eigenaar"></p>
                 <p id="grootte"></p>
                 <p id="crops"></p>
             </div>
@@ -90,8 +90,8 @@ export default {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                // console.log(data.data.fields);
+                // console.log(data);
+                console.log(data.data.fields);
                 const field = data.data.fields;
 
                 // loop over fields
@@ -100,7 +100,7 @@ export default {
 
                     let card = document.querySelector('.card-veld').cloneNode(true);
                     card.querySelector('#veldnaam').innerHTML = field[i].name;
-                    card.querySelector('#eigenaars').innerHTML = field[i].owners;
+                    card.querySelector('#eigenaar').innerHTML = field[i].owner.firstname + ' ' + field[i].owner.lastname;
                     card.querySelector('#grootte').innerHTML = field[i].size + ' m²';
                     card.querySelector('#crops').innerHTML = field[i].crops;
 

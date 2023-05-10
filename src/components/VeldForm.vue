@@ -1,51 +1,17 @@
 <template>
     <div class="content">
-        <h1>Boerderij toevoegen</h1>
+        <h1>Je velden toevoegen</h1>
 
         <div class="alert hidden">
             Here is some feedback
         </div>
         <div class="form-group">
             <form action="#">
-                <div class="group">
-                    <label for="firstname">Voornaam</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Voornaam">
-                </div>
-
-                <div class="group">
-                    <label for="lastname">Achternaam</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Achternaam">
-                </div>
-
-                <div class="group">
-                    <label for="farmName">Boerderij naam</label>
-                    <input type="text" id="farmName" name="farmName" placeholder="Boerderij naam">
-                </div>
-
-                <div class="group">
-                    <label for="street">Straat</label>
-                    <input type="text" id="street" name="street" placeholder="Straat">
-                </div>
-
-                <div class="group">
-                    <label for="streetnumber">Huisnummer</label>
-                    <input type="text" id="streetnumber" name="streetnumber" placeholder="Huisnummer">
-                </div>
-
-                <div class="group">
-                    <label for="postalcode">Postcode</label>
-                    <input type="text" id="postalcode" name="postalcode" placeholder="Postcode">
-                </div>
-
-                <div class="group">
-                    <label for="city">Stad</label>
-                    <input type="text" id="city" name="city" placeholder="Stad">
-                </div>
-
-                <p>Zoek op de map je adres en teken de oppervlakte van je grond.</p>
+                <h2>Stap 2</h2>
+                <p>Teken nu op de map de grootte van je velden die je zult verhuren.</p>
                 <div id="mapContainer"></div>
 
-                <input type="submit" value="Voeg toe">
+                <input type="submit" value="Volgende">
 
                 <!-- locatie -->
                 <!-- polygon -->
@@ -116,8 +82,6 @@ export default {
             let coordinates = e.layer._latlngs[0];
             console.log(coordinates);
 
-            // create polygon
-            let polygon = L.polygon(coordinates).addTo(this.map);
         });
 
         // make search bar expanded
