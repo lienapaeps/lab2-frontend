@@ -21,7 +21,7 @@
                     <label for="farmName">Boerderij naam</label>
                     <input type="text" id="farmName" name="farmName" placeholder="Boerderij naam">
                 </div>
-                <!-- 
+
                 <div class="group">
                     <label for="street">Straat</label>
                     <input type="text" id="street" name="street" placeholder="Straat">
@@ -40,7 +40,7 @@
                 <div class="group">
                     <label for="city">Stad</label>
                     <input type="text" id="city" name="city" placeholder="Stad">
-                </div> -->
+                </div>
 
                 <p>Zoek op de map je adres en teken de oppervlakte van je grond.</p>
                 <div id="mapContainer"></div>

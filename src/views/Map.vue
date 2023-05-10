@@ -75,7 +75,7 @@ export default {
                 const farms = data.data.farms;
 
                 farms.forEach(farm => {
-                    const marker = L.marker([farm.location.latitude, farm.location.longitude], { icon: boerderijIcon }).addTo(this.map);
+                    const marker = L.marker([farm.location.lat, farm.location.lng], { icon: boerderijIcon }).addTo(this.map);
                     marker.bindPopup(
                         // vue router link naar pagina met meer info over de boerderij via id in de url
                         `<b>${farm.name}</b><br><a href='boerderij/${farm._id}'>Meer info</a>`

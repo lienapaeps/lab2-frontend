@@ -47,7 +47,7 @@ export default {
                 const farm = data.data.farm;
 
                 // map toevoegen en inzoomen op loactie van boerderij
-                this.map = L.map("mapContainer").setView([farm.location.latitude, farm.location.longitude], 17);
+                this.map = L.map("mapContainer").setView([farm.location.lat, farm.location.lng], 17);
                 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
                     maxZoom: 20,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
@@ -56,7 +56,7 @@ export default {
                 // polygon tekenen rond boerderij
                 let polygonArray = [];
                 for (let i = 0; i < farm.polygon.length; i++) {
-                    polygonArray.push([farm.polygon[i].latitude, farm.polygon[i].longitude]);
+                    polygonArray.push([farm.polygon[i].lat, farm.polygon[i].lng]);
                 }
 
                 // console.log(polygonArray);

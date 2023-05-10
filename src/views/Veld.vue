@@ -42,7 +42,7 @@ export default {
                 const field = data.data.field;
 
                 // map toevoegen en inzoomen op loactie van veld
-                this.map = L.map("mapContainer").setView([field.polygon[0].latitude, field.polygon[0].longitude], 18);
+                this.map = L.map("mapContainer").setView([field.polygon[0].lat, field.polygon[0].lng], 18);
                 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
                     maxZoom: 20,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
@@ -51,7 +51,7 @@ export default {
                 // polygon tekenen rond veld
                 let polygonArray = [];
                 for (let i = 0; i < field.polygon.length; i++) {
-                    polygonArray.push([field.polygon[i].latitude, field.polygon[i].longitude]);
+                    polygonArray.push([field.polygon[i].lat, field.polygon[i].lng]);
                 }
 
                 // console.log(polygonArray);
@@ -90,7 +90,7 @@ export default {
                         // polygon tekenen rond veld
                         let polygonArray = [];
                         for (let i = 0; i < farm.polygon.length; i++) {
-                            polygonArray.push([farm.polygon[i].latitude, farm.polygon[i].longitude]);
+                            polygonArray.push([farm.polygon[i].lat, farm.polygon[i].lng]);
                         }
 
                         // console.log(polygonArray);
