@@ -4,13 +4,24 @@
     <div class="content">
         <a href="/map">Terug</a>
         <h1 id="boerderijnaam"></h1>
-        <p id="adres"></p>
+        <div class="boerderij-info">
+            <img class="icon" src="/EmblemInfo.svg" alt="info">
+            <p id="adres"></p>
+        </div>
+        <div class="boerderij-info">
+            <img class="icon" src="/EmblemPhone.svg" alt="phone">
+            <p id="phonenumber"></p>
+        </div>
 
+
+        <h2>Velden</h2>
         <div id="velden">
-            <h2>Velden</h2>
             <div class="card-veld">
                 <h3 id="veldnaam"></h3>
-                <p id="eigenaar"></p>
+                <div class="test">
+                    <p class="free">Beschikbaar</p>
+                </div>
+                <p id="eigenaars"></p>
                 <p id="grootte"></p>
                 <p id="crops"></p>
             </div>
@@ -72,8 +83,10 @@ export default {
                 // info over boerderij
                 let naam = document.querySelector('#boerderijnaam');
                 let adres = document.querySelector('#adres');
+                let phonenumber = document.querySelector('#phonenumber');
                 naam.innerHTML = farm.name;
                 adres.innerHTML = farm.street + ' ' + farm.streetnumber + ', ' + farm.postalcode + ' ' + farm.city;
+                phonenumber.innerHTML = farm.phonenumber;
 
             })
             .catch(error => {
@@ -100,15 +113,16 @@ export default {
 
                     let card = document.querySelector('.card-veld').cloneNode(true);
                     card.querySelector('#veldnaam').innerHTML = field[i].name;
-                    card.querySelector('#eigenaar').innerHTML = field[i].owner.firstname + ' ' + field[i].owner.lastname;
-                    card.querySelector('#grootte').innerHTML = field[i].size + ' m²';
+                    card.querySelector('#eigenaars').innerHTML = field[i].owner.firstname;
+                    card.querySelector('#grootte').innerHTML = field[i].size + 'm²';
                     card.querySelector('#crops').innerHTML = field[i].crops;
+
 
                     // add link to rent field in card
                     let link = document.createElement('a');
                     link.setAttribute('href', '/veld/' + field[i]._id);
-                    link.setAttribute('style', 'color: var(--deepSeaGreen500)');
                     link.innerHTML = 'Huren';
+                    link.classList.add('btn');
                     card.appendChild(link);
 
                     document.querySelector('#velden').appendChild(card);
@@ -130,21 +144,83 @@ export default {
 <style scoped>
 /*  mobile */
 #mapContainer {
-    width: 75%;
-    height: 350px;
-    margin-left: 25%;
+    width: 100%;
+    height: 300px;
+}
+
+#velden {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+#boerderijnaam {
+    margin: 0;
+}
+
+.free {
+    background-color: var(--deepSeaGreen500);
+    color: #fff;
+    padding: 10px;
+    margin-right: 70%;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.boerderij-info {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 1rem;
+}
+
+.card-veld {
+    width: 70%;
+    background-color: #fff;
+    margin-right: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-veld:nth-child(1) {
+    display: none;
 }
 
 .content {
-    margin-left: 25%;
-    padding-left: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     margin-top: 1rem;
 }
 
-a {
-    color: var(--deepSeaGreen500);
+#veldnaam {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
+
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    #velden {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 692px) {
+    #mapContainer {
+        width: 75%;
+        height: 350px;
+        margin-left: 25%;
+    }
+
+    .content {
+        margin-left: 25%;
+        padding-left: 1rem;
+        margin-top: 1rem;
+    }
+}
 </style>
