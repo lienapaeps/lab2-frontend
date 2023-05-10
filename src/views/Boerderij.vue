@@ -8,6 +8,12 @@
 
         <div id="velden">
             <h2>Velden</h2>
+            <div class="card-veld">
+                <h3 id="veldnaam"></h3>
+                <p id="eigenaars"></p>
+                <p id="grootte"></p>
+                <p id="crops"></p>
+            </div>
         </div>
     </div>
 </template>
@@ -92,15 +98,18 @@ export default {
                 for (let i = 0; i < field.length; i++) {
                     // console.log(field[i].name);
 
-                    let card = document.createElement('div');
-                    card.classList.add('veld');
-                    card.innerHTML = `
-                    <h3>${field[i].name}</h3>
-                    <p>${field[i].owners}</p>
-                    <p>${field[i].size} m²</p>
-                    <p>${field[i].crops}</p>
-                    <a style="color: var(--deepSeaGreen500)" href="/veld/${field[i]._id}">Huren</a>
-                    `;
+                    let card = document.querySelector('.card-veld').cloneNode(true);
+                    card.querySelector('#veldnaam').innerHTML = field[i].name;
+                    card.querySelector('#eigenaars').innerHTML = field[i].owners;
+                    card.querySelector('#grootte').innerHTML = field[i].size + ' m²';
+                    card.querySelector('#crops').innerHTML = field[i].crops;
+
+                    // add link to rent field in card
+                    let link = document.createElement('a');
+                    link.setAttribute('href', '/veld/' + field[i]._id);
+                    link.setAttribute('style', 'color: var(--deepSeaGreen500)');
+                    link.innerHTML = 'Huren';
+                    card.appendChild(link);
 
                     document.querySelector('#velden').appendChild(card);
                 }
