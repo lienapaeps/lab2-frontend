@@ -55,7 +55,7 @@ export default {
 
         // marker icon for farm
         let boerderijIcon = L.icon({
-            iconUrl: 'src/assets/icon-boerderij.svg',
+            iconUrl: '/icon-boerderij.svg',
             iconSize: [40, 40],
             iconAnchor: [10, 10],
             popupAnchor: [7, -5]
