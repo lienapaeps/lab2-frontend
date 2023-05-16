@@ -7,6 +7,12 @@ if (!localStorage.getItem('token')) {
     window.location.href = "/login";
 }
 
+const logOut = () => {
+    localStorage.removeItem('token');
+    window.location.href = "/login";
+    window.location.reload()
+}
+
 // get user id from token in localstorage
 const token = localStorage.getItem('token');
 const base64Url = token.split('.')[1];
@@ -34,6 +40,12 @@ let userId = user.uid;
                 <h2>Verhuren</h2>
                 <ProfielCard text="Verhuur mijn veld" src="verhuren.svg" router="/profiel/boerderijen" />
             </div>
+            <router-link @click="logOut()" exact to="/">
+                <div class="logout">
+                    <img src="/logout.svg" alt="Log uit icoon">
+                    <p>Uitloggen</p>
+                </div>
+            </router-link>
         </div>
     </div>
 </template>
@@ -58,6 +70,15 @@ let userId = user.uid;
     gap: 2rem;
 }
 
+.logout {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.logout p {
+    color: var(--semanticRed);
+}
 
 /*  desktop */
 @media (min-width: 992px) {}
