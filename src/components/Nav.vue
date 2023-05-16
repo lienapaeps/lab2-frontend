@@ -79,9 +79,6 @@ nav {
     width: 30px;
     margin: 10px;
     cursor: pointer;
-}
-
-.burger--active {
     filter: brightness(0) saturate(100%)invert(99%) sepia(1%) saturate(7485%) hue-rotate(173deg) brightness(127%) contrast(95%);
 }
 
@@ -123,14 +120,13 @@ nav {
 .emblem {
     width: 20px;
     margin-right: 6px;
-    filter: brightness(0) saturate(100%)invert(99%) sepia(1%) saturate(7485%) hue-rotate(173deg) brightness(127%) contrast(95%);
+    filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(7485%) hue-rotate(173deg) brightness(127%) contrast(95%);
 }
 
 .active .emblem {
     width: 20px;
     margin-right: 6px;
     filter: brightness(0) saturate(100%) invert(29%) sepia(18%) saturate(2138%) hue-rotate(118deg) brightness(90%) contrast(94%);
-
 }
 
 .logo__nav {

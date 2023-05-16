@@ -19,7 +19,9 @@ let firstname = user.firstname;
 <template>
     <div class="container">
         <div class="content">
+            <div class="nav">
             <h1 class="title">Welkom terug, {{ firstname }}</h1>
+            </div>
 
             <p>Recent</p>
             <div class="card-reel">
@@ -32,21 +34,46 @@ let firstname = user.firstname;
 
 <style scoped>
 /*  mobile */
+.container{
+    background-color: var(--deepSeaGreen800);
+    height: 60px;
+    width: 100%;
+    margin-left: 0px;
+}
 
 .content {
     position: absolute;
     width: 70%;
+    margin-left: 40px;
 }
 
 .card-reel {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+}
+
+.nav{
+    color: var(--offWhite);
+    padding-bottom: 40px;
 }
 
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .container{
+        background-color: var(--offWhite);
+    }
+    .card-reel {
+    display: flex;
+    flex-direction: row;
+}
+}
 
 @media (min-width: 692px) {
+    .container{
+        color: var(--offBlac);
+        background-color: var(--offWhite);
+    }
+
     #mapContainer {
         width: 75%;
         height: 350px;
@@ -55,8 +82,12 @@ let firstname = user.firstname;
 
     .content {
         margin-left: 25%;
-        padding-left: 1rem;
+        padding-left: 2rem;
         margin-top: 1rem;
+    }
+
+    .nav{
+        color: var(--offBlack900);
     }
 }
 </style>
