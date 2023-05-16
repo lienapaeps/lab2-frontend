@@ -4,12 +4,19 @@ import router from '../router/router';
 window.onload = function () {
     const nav = document.querySelector('nav');
     const burger = document.querySelector('.burger');
+    const navitem = document.querySelectorAll('.nav__item');
     burger.addEventListener('click', () => {
         nav.classList.toggle('nav__menu--hidden');
         burger.classList.toggle('burger--active');
         console.log('test');
-    })
-        ;
+    });
+    navitem.forEach((item) => {
+        item.addEventListener('click', () => {
+            nav.classList.toggle('nav__menu--hidden');
+            burger.classList.toggle('burger--active');
+        });
+    });
+
 }
 
 </script>
