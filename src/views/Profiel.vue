@@ -32,7 +32,7 @@ let userId = user.uid;
             </div>
             <div class="verhuren">
                 <h2>Verhuren</h2>
-                <ProfielCard text="Verhuur mijn veld" src="verhuren.svg" router="/boerderijen" />
+                <ProfielCard text="Verhuur mijn veld" src="verhuren.svg" router="/profiel/boerderijen" />
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@ const routes = [
   { path: "/boerderij/:id", component: Boerderij },
   { path: "/veld/:id", component: Veld },
   { path: "/addBoerderij", component: AddBoerderij },
-  { path: "/boerderijen", component: MijnBoerderijen },
+  { path: "/profiel/boerderijen", component: MijnBoerderijen },
 ];
 
 const router = createRouter({

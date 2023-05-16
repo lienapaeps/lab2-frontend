@@ -272,10 +272,11 @@ export default {
                         window.location.href = "/";
                     } else {
                         let feedback = document.querySelector(".alert");
-                        feedback.textContent = json.message;
+                        feedback.textContent = data.message;
                         feedback.classList.remove("hidden");
                         feedback.style.backgroundColor = "#f8d7da";
                         feedback.style.color = "#C82424";
+                        window.scrollTo(0, 0);
                     }
                 })
                 .catch((error) => {
