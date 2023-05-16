@@ -269,7 +269,7 @@ export default {
 
                     if (data.status === "success") {
                         console.log("tis gelukt");
-                        window.location.href = "/";
+                        window.location.href = "/profiel/boerderijen";
                     } else {
                         let feedback = document.querySelector(".alert");
                         feedback.textContent = data.message;
