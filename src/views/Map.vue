@@ -47,7 +47,7 @@ export default {
         document.querySelector('.leaflet-control-zoom').style.left = '45px';
 
         // change width of search bar
-        document.querySelector('.leaflet-control-geocoder-form input').style.width = '400px';
+        document.querySelector('.leaflet-control-geocoder-form input').style.width = '200px';
         document.querySelector('.leaflet-control-geocoder-form input').style.height = '40px';
 
         // change placeholder of search bar

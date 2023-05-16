@@ -26,8 +26,6 @@ if (!localStorage.getItem('token')) {
 
 .content {
     position: absolute;
-    top: 5%;
-    margin-left: 25%;
     width: 70%;
 }
 
@@ -38,4 +36,18 @@ if (!localStorage.getItem('token')) {
 
 /*  desktop */
 @media (min-width: 992px) {}
+
+@media (min-width: 692px) {
+    #mapContainer {
+        width: 75%;
+        height: 350px;
+        margin-left: 25%;
+    }
+
+    .content {
+        margin-left: 25%;
+        padding-left: 1rem;
+        margin-top: 1rem;
+    }
+}
 </style>
