@@ -23,7 +23,7 @@ const props = defineProps({
                     <img :src="props.src" alt="">
                     <p>{{ props.text }}</p>
                 </div>
-                <img src="chevron-right.svg" alt="Right arrow">
+                <img src="/chevron-right.svg" alt="Right arrow">
             </div>
         </div>
     </router-link>
