@@ -1,9 +1,20 @@
 <script setup>
+import ProfielCard from '../components/ProfielCard.vue';
+import router from '../router/router';
+
+
 if (!localStorage.getItem('token')) {
     window.location.href = "/login";
 }
 
-import ProfielCard from '../components/ProfielCard.vue';
+// get user id from token in localstorage
+const token = localStorage.getItem('token');
+const base64Url = token.split('.')[1];
+const base64 = base64Url.replace('-', '+').replace('_', '/');
+const user = JSON.parse(window.atob(base64));
+// console.log(user.uid);
+
+let userId = user.uid;
 </script>
 
 <template>
@@ -21,7 +32,7 @@ import ProfielCard from '../components/ProfielCard.vue';
             </div>
             <div class="verhuren">
                 <h2>Verhuren</h2>
-                <ProfielCard text="Verhuur mijn veld" src="verhuren.svg" router="/" />
+                <ProfielCard text="Verhuur mijn veld" src="verhuren.svg" router="/profiel/boerderijen" />
             </div>
         </div>
     </div>
@@ -39,20 +50,6 @@ import ProfielCard from '../components/ProfielCard.vue';
     top: 5%;
     margin-left: 25%;
     width: 70%;
-}
-
-.instellingen .gewassen,
-.instellingen .privacy,
-.instellingen .meldingen,
-.verhuren .veld {
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: .5rem 2rem;
-    margin-bottom: 1.5rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .left {

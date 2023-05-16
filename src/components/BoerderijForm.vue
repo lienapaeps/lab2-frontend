@@ -269,13 +269,14 @@ export default {
 
                     if (data.status === "success") {
                         console.log("tis gelukt");
-                        window.location.href = "/";
+                        window.location.href = "/profiel/boerderijen";
                     } else {
                         let feedback = document.querySelector(".alert");
-                        feedback.textContent = json.message;
+                        feedback.textContent = data.message;
                         feedback.classList.remove("hidden");
                         feedback.style.backgroundColor = "#f8d7da";
                         feedback.style.color = "#C82424";
+                        window.scrollTo(0, 0);
                     }
                 })
                 .catch((error) => {

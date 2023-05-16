@@ -9,7 +9,8 @@ import Profiel from '../views/Profiel.vue';
 import Map from '../views/Map.vue';
 import Boerderij from '../views/Boerderij.vue';
 import Veld from '../views/Veld.vue';
-import Verhuren from '../views/Verhuren.vue';
+import AddBoerderij from '../views/AddBoerderij.vue';
+import MijnBoerderijen from '../views/MijnBoerderijen.vue';
 
 const routes = [
   { path: "/", component: Home },
@@ -22,7 +23,8 @@ const routes = [
   { path: "/map", component: Map },
   { path: "/boerderij/:id", component: Boerderij },
   { path: "/veld/:id", component: Veld },
-  { path: "/verhuren", component: Verhuren },
+  { path: "/addBoerderij", component: AddBoerderij },
+  { path: "/profiel/boerderijen", component: MijnBoerderijen },
 ];
 
 const router = createRouter({
