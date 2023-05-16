@@ -83,7 +83,7 @@ export default {
                 let naam = document.querySelector('#boerderijnaam');
                 let adres = document.querySelector('#adres');
                 let phonenumber = document.querySelector('#phonenumber');
-                naam.innerHTML = farm.name;
+                naam.innerHTML = "Boerderij " + farm.name;
                 adres.innerHTML = farm.street + ' ' + farm.streetnumber + ', ' + farm.postalcode + ' ' + farm.city;
                 phonenumber.innerHTML = farm.phonenumber;
 
@@ -124,7 +124,7 @@ export default {
                     link.classList.add('btn');
                     card.appendChild(link);
 
-                    if(field[i].owner.firstname !== null) {
+                    if (field[i].owner.firstname !== null) {
                         card.querySelector('.availability').classList.add('rented');
                         card.querySelector('.availability').innerHTML = 'Verhuurd';
                     } else {
@@ -183,7 +183,7 @@ export default {
     margin-right: 1rem;
 }
 
-.rented{
+.rented {
     font-family: "DM Sans", sans-serif;
     color: #fff;
     background-color: var(--semanticRed);
@@ -193,7 +193,7 @@ export default {
     border-radius: 4px;
 }
 
-.available{
+.available {
     font-family: "DM Sans", sans-serif;
     color: #fff;
     background-color: var(--deepSeaGreen500);
@@ -201,8 +201,9 @@ export default {
     text-align: center;
     padding: 10px;
     border-radius: 4px;
-    
+
 }
+
 .card-veld {
     width: 70%;
     background-color: #fff;

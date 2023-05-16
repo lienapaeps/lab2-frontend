@@ -269,7 +269,7 @@ export default {
 
                     if (data.status === "success") {
                         console.log("tis gelukt");
-                        router.push("/");
+                        window.location.href = "/";
                     } else {
                         let feedback = document.querySelector(".alert");
                         feedback.textContent = json.message;

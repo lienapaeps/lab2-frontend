@@ -13,7 +13,6 @@ import Verhuren from '../views/Verhuren.vue';
 
 const routes = [
   { path: "/", component: Home },
-  { path: "/home", component: Home },
   { path: "/videos", component: Videos },
   { path: "/login", component: LogIn },
   { path: "/velden", component: Velden },

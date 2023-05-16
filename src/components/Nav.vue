@@ -9,7 +9,7 @@ window.onload = function () {
         burger.classList.toggle('burger--active');
         console.log('test');
     })
-    ;
+        ;
 }
 
 </script>
@@ -62,9 +62,9 @@ nav {
 .nav__menu--hidden {
     opacity: 1;
     z-index: 99;
-}  
+}
 
-.burger{
+.burger {
     position: absolute;
     top: 70px;
     right: 40px;
@@ -74,11 +74,11 @@ nav {
     cursor: pointer;
 }
 
-.burger--active{
+.burger--active {
     filter: brightness(0) saturate(100%)invert(99%) sepia(1%) saturate(7485%) hue-rotate(173deg) brightness(127%) contrast(95%);
 }
 
-.test{
+.test {
     position: absolute;
     top: 0;
     left: 0;
@@ -132,7 +132,9 @@ nav {
     margin-bottom: 80px;
 }
 
-.hamburger .bar, .hamburger::before, .hamburger::after{
+.hamburger .bar,
+.hamburger::before,
+.hamburger::after {
     content: '';
     display: block;
     width: 100%;
@@ -150,28 +152,28 @@ nav {
 
 @media (min-width: 692px) {
     nav {
-    width: 25%;
-    float: left;
-    height: 100%;
-    bottom: 0;
-    left: 0;
-    background-color: var(--deepSeaGreen800);
-    overflow: hidden;
-    position: fixed;
-    z-index: 1;
-    opacity: 1;
-}
+        width: 25%;
+        float: left;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        background-color: var(--deepSeaGreen800);
+        overflow: hidden;
+        position: fixed;
+        z-index: 1;
+        opacity: 1;
+    }
 
-.test{
-    opacity: 0;
-}
+    .test {
+        opacity: 0;
+    }
 
-.nav__menu--hidden {
-    opacity: 1;
-}
+    .nav__menu--hidden {
+        opacity: 1;
+    }
 
-.burger{
-    opacity: 0;
-}
+    .burger {
+        opacity: 0;
+    }
 }
 </style>
