@@ -52,7 +52,7 @@ onMounted(() => {
             <h2>Mijn boerderijen</h2>
             <div class="boerderijen">
                 <!-- als er nog geen boerderijen zijn: -->
-                <p v-if="boerderijen.length === 0">Je hebt nog geen boerderijen toegevoegd.</p>
+                <p v-if="boerderijen.boerderijen.length === 0">Je hebt nog geen boerderijen toegevoegd.</p>
                 <!-- als er wel boerderijen zijn: -->
                 <div v-for="boerderij in boerderijen.boerderijen" :key="boerderij.id">
                     <h3>{{ boerderij.name }}</h3>
