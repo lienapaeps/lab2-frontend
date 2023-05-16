@@ -162,7 +162,7 @@ export default {
 }
 
 #boerderijnaam {
-    margin: 0;
+    margin-top: 1rem;
 }
 
 .free {
@@ -229,6 +229,9 @@ export default {
     margin-bottom: 0.5rem;
 }
 
+a {
+    color: var(--offBlack900);
+}
 
 /*  desktop */
 @media (min-width: 992px) {
