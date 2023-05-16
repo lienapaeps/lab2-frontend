@@ -187,7 +187,7 @@ export default {
     font-family: "DM Sans", sans-serif;
     color: #fff;
     background-color: var(--semanticRed);
-    max-width: 20%;
+    max-width: 140px;
     text-align: center;
     padding: 10px;
     border-radius: 4px;
@@ -197,7 +197,7 @@ export default {
     font-family: "DM Sans", sans-serif;
     color: #fff;
     background-color: var(--deepSeaGreen500);
-    max-width: 20%;
+    max-width: 140px;
     text-align: center;
     padding: 10px;
     border-radius: 4px;

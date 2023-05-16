@@ -35,8 +35,6 @@ let firstname = user.firstname;
 
 .content {
     position: absolute;
-    top: 5%;
-    margin-left: 25%;
     width: 70%;
 }
 
@@ -47,4 +45,18 @@ let firstname = user.firstname;
 
 /*  desktop */
 @media (min-width: 992px) {}
+
+@media (min-width: 692px) {
+    #mapContainer {
+        width: 75%;
+        height: 350px;
+        margin-left: 25%;
+    }
+
+    .content {
+        margin-left: 25%;
+        padding-left: 1rem;
+        margin-top: 1rem;
+    }
+}
 </style>
