@@ -21,17 +21,33 @@ if (!localStorage.getItem('token')) {
 <style scoped>
 /*  mobile */
 .container {
-    display: flex;
-    flex-direction: column;
+    background-color: var(--deepSeaGreen800);
+    height: 120px;
+    width: 100%;
+    margin-left: 0px;
+}
+
+h1 {
+    color: var(--offWhite);
 }
 
 .content {
     position: absolute;
-    width: 90%;
+    width: 80%;
+    margin-left: 40px;
 }
 
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .container {
+        background-color: var(--offWhite);
+        margin-left: 20px;
+    }
+
+    h1 {
+        color: var(--offBlack900);
+    }
+}
 
 @media (min-width: 692px) {
     #mapContainer {

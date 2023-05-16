@@ -52,22 +52,33 @@ let userId = user.uid;
 
 <style scoped>
 /*  mobile */
+
 .container {
-    display: flex;
-    flex-direction: column;
+    background-color: var(--deepSeaGreen800);
+    height: 75px;
+    width: 100%;
+    margin-left: 0px;
+}
+
+h1,
+.profile {
+    color: var(--offWhite);
 }
 
 .content {
     position: absolute;
-    top: 5%;
-    margin-left: 25%;
-    width: 70%;
+    width: 80%;
+    margin-left: 40px;
 }
 
 .left {
     display: flex;
     align-items: center;
     gap: 2rem;
+}
+
+.instellingen {
+    margin-top: 4rem;
 }
 
 .logout {
@@ -81,5 +92,21 @@ let userId = user.uid;
 }
 
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .container {
+        background-color: var(--offWhite);
+    }
+
+    h1,
+    .profile {
+        color: var(--offBlack900);
+    }
+
+    .content {
+        margin-left: 26%;
+        padding-left: 1rem;
+        margin-top: 1rem;
+        width: 65%;
+    }
+}
 </style>

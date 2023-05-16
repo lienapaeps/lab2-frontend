@@ -20,7 +20,7 @@ let firstname = user.firstname;
     <div class="container">
         <div class="content">
             <div class="nav">
-            <h1 class="title">Welkom terug, {{ firstname }}</h1>
+                <h1 class="title">Welkom terug, {{ firstname }}</h1>
             </div>
 
             <p>Recent</p>
@@ -34,9 +34,9 @@ let firstname = user.firstname;
 
 <style scoped>
 /*  mobile */
-.container{
+.container {
     background-color: var(--deepSeaGreen800);
-    height: 60px;
+    height: 75px;
     width: 100%;
     margin-left: 0px;
 }
@@ -52,24 +52,29 @@ let firstname = user.firstname;
     flex-direction: column;
 }
 
-.nav{
+.nav {
     color: var(--offWhite);
     padding-bottom: 40px;
 }
 
 /*  desktop */
 @media (min-width: 992px) {
-    .container{
+    .container {
         background-color: var(--offWhite);
     }
+
     .card-reel {
-    display: flex;
-    flex-direction: row;
-}
+        display: flex;
+        flex-direction: row;
+    }
+
+    .nav {
+        padding-bottom: 10px;
+    }
 }
 
 @media (min-width: 692px) {
-    .container{
+    .container {
         color: var(--offBlac);
         background-color: var(--offWhite);
     }
@@ -86,7 +91,7 @@ let firstname = user.firstname;
         margin-top: 1rem;
     }
 
-    .nav{
+    .nav {
         color: var(--offBlack900);
     }
 }
