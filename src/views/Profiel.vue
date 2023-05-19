@@ -78,7 +78,7 @@ h1,
 }
 
 .instellingen {
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .logout {
@@ -107,6 +107,10 @@ h1,
         padding-left: 1rem;
         margin-top: 1rem;
         width: 65%;
+    }
+
+    .instellingen {
+        margin-top: 2rem;
     }
 }
 </style>

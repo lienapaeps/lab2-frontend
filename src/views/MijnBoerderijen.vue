@@ -48,6 +48,11 @@ onMounted(() => {
 <template>
     <div class="container">
         <div class="content">
+            <div class="arrow">
+                <router-link exact to="/profiel">
+                    <img src="./../assets/left-arrow.svg" alt="arrow" />
+                </router-link>
+            </div>
             <h1>Verhuren</h1>
             <h2>Mijn boerderijen</h2>
             <div class="boerderijen">
@@ -81,15 +86,15 @@ a.add {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
+    height: 75px;
+    width: 100%;
+    margin-left: 0px;
 }
 
 .content {
-    margin-left: 25%;
-    padding-left: 1rem;
-    margin-top: 1rem;
-    width: 65%;
+    position: absolute;
+    width: 70%;
+    margin-left: 40px;
 }
 
 .boerderijen div {
@@ -107,5 +112,9 @@ a.add {
 }
 
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .container {
+        margin-left: 25%;
+    }
+}
 </style>

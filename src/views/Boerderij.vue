@@ -2,7 +2,11 @@
     <div id="mapContainer"></div>
 
     <div class="content">
-        <a href="/map">Terug</a>
+        <div class="arrow">
+            <router-link exact to="/map">
+                <img src="./../assets/left-arrow.svg" alt="arrow" />
+            </router-link>
+        </div>
         <h1 id="boerderijnaam"></h1>
         <div class="boerderij-info">
             <img class="icon" src="/EmblemInfo.svg" alt="info">
@@ -62,6 +66,10 @@ export default {
                     maxZoom: 20,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
                 }).addTo(this.map);
+
+                //change position of zoom buttons
+                document.querySelector('.leaflet-control-zoom').style.top = '100px';
+                document.querySelector('.leaflet-control-zoom').style.left = '10px';
 
                 // polygon tekenen rond boerderij
                 let polygonArray = [];
@@ -153,6 +161,7 @@ export default {
 #mapContainer {
     width: 100%;
     height: 300px;
+    z-index: 0;
 }
 
 #velden {
@@ -233,11 +242,22 @@ a {
     color: var(--offBlack900);
 }
 
+.arrow {
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    z-index: 10;
+}
+
 /*  desktop */
 @media (min-width: 992px) {
     #velden {
         display: flex;
         flex-direction: row;
+    }
+
+    .arrow {
+        left: 26%;
     }
 }
 

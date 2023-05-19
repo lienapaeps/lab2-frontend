@@ -128,7 +128,7 @@ export default {
         document.querySelector('.leaflet-control-geocoder').classList.add('leaflet-control-geocoder-expanded');
 
         // change width of search bar
-        document.querySelector('.leaflet-control-geocoder-form input').style.width = '400px';
+        document.querySelector('.leaflet-control-geocoder-form input').style.width = '150px';
         document.querySelector('.leaflet-control-geocoder-form input').style.height = '40px';
 
         // change placeholder of search bar
@@ -303,10 +303,9 @@ export default {
 }
 
 .content {
-    margin-left: 25%;
     padding-left: 2rem;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    padding-right: 2rem;
+    margin-top: 1rem;
 }
 
 /* form  */
@@ -336,25 +335,33 @@ input[type=submit]:hover {
     background-color: var(--deepSeaGreen500);
 }
 
-.form-group {
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 3rem;
-    margin-right: 2rem;
-}
-
 .group {
     margin-bottom: .5rem;
     width: 100%;
 }
 
-.group-group {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-}
-
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .content {
+        margin-left: 25%;
+        padding-left: 2rem;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-group {
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
+        margin-right: 2rem;
+    }
+
+    .group-group {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+}
 </style>
