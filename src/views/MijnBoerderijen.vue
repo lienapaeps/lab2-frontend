@@ -60,7 +60,7 @@ onMounted(() => {
                 <p v-if="boerderijen.boerderijen.length === 0">Je hebt nog geen boerderijen toegevoegd.</p>
                 <!-- als er wel boerderijen zijn: -->
                 <div v-for="boerderij in boerderijen.boerderijen" :key="boerderij.id">
-                    <h3>{{ boerderij.name }}</h3>
+                    <h3>Boerderij {{ boerderij.name }}</h3>
                     <p>{{ boerderij.street }} {{ boerderij.streetnumber }}, {{ boerderij.postalcode }} {{ boerderij.city }}
                     </p>
                     <br>
@@ -75,7 +75,7 @@ onMounted(() => {
 <style scoped>
 /*  mobile */
 a {
-    color: var(--offBlack900);
+    color: var(--deepSeaGreen500);
 }
 
 a.add {
@@ -100,7 +100,7 @@ a.add {
 .boerderijen div {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: .5rem 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 10px;
 }
 

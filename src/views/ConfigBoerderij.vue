@@ -121,7 +121,7 @@ onMounted(() => {
             <div class="card-veld" v-for="veld in velden.velden" :key="veld.id">
                 <h3 id="veldnaam">{{ veld.name }}</h3>
                 <div class="availability"></div>
-                <p id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</p>
+                <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
                 <p id="grootte">{{ veld.size }} m²</p>
                 <span id="gewassen" v-for="crop in veld.crops" :key="crop.id">{{ crop }}</span>
                 <a class="btn" href="#">Bewerken</a>
@@ -145,6 +145,7 @@ onMounted(() => {
 
 #eigenaars {
     font-weight: 500;
+    margin-right: 0.5rem;
 }
 
 #eigenaars,
