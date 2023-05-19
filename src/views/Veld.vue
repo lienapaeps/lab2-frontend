@@ -42,29 +42,29 @@ export default {
                 const field = data.data.field;
 
                 // map toevoegen en inzoomen op loactie van veld
-                this.map = L.map("mapContainer").setView([field.polygon[0].lat, field.polygon[0].lng], 18);
-                L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-                    maxZoom: 20,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
-                }).addTo(this.map);
+                // this.map = L.map("mapContainer").setView([field.polygon[0].lat, field.polygon[0].lng], 18);
+                // L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+                //     maxZoom: 20,
+                //     attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
+                // }).addTo(this.map);
 
                 // polygon tekenen rond veld
-                let polygonArray = [];
-                for (let i = 0; i < field.polygon.length; i++) {
-                    polygonArray.push([field.polygon[i].lat, field.polygon[i].lng]);
-                }
+                // let polygonArray = [];
+                // for (let i = 0; i < field.polygon.length; i++) {
+                //     polygonArray.push([field.polygon[i].lat, field.polygon[i].lng]);
+                // }
 
                 // console.log(polygonArray);
 
-                const polygon = L.polygon(polygonArray, {
-                    color: '#12B787',
-                    fillColor: '#12B787',
-                    fillOpacity: 1
-                }).addTo(this.map);
+                // const polygon = L.polygon(polygonArray, {
+                //     color: '#12B787',
+                //     fillColor: '#12B787',
+                //     fillOpacity: 1
+                // }).addTo(this.map);
 
-                polygon.bringToFront();
+                // polygon.bringToFront();
 
-                polygon.bindPopup(field.name);
+                // polygon.bindPopup(field.name);
 
                 let backLink = document.querySelector('.back');
                 // change href of backlink
@@ -87,6 +87,12 @@ export default {
                         // console.log(data.data.farm);
                         const farm = data.data.farm;
 
+                        this.map = L.map("mapContainer").setView([farm.location.lat, farm.location.lng], 17);
+                        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+                            maxZoom: 20,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a>'
+                        }).addTo(this.map);
+
                         // polygon tekenen rond veld
                         let polygonArray = [];
                         for (let i = 0; i < farm.polygon.length; i++) {
@@ -101,7 +107,7 @@ export default {
                             fillOpacity: 1
                         }).addTo(this.map);
 
-                        polygon.bringToBack();
+                        // polygon.bringToBack();
 
                         let boerderijNaam = document.querySelector('#boerderijnaam');
                         boerderijNaam.innerHTML = farm.name;

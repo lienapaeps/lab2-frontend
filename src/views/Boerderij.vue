@@ -120,10 +120,18 @@ export default {
 
                     let card = document.querySelector('.card-veld').cloneNode(true);
                     card.querySelector('#veldnaam').innerHTML = field[i].name;
-                    card.querySelector('#eigenaars').innerHTML = field[i].owner.firstname;
+                    // card.querySelector('#eigenaars').innerHTML = field[i].owner;
+
+                    // loop over owners array
+                    let owners = field[i].owner;
+                    let ownerArray = [];
+                    for (let j = 0; j < owners.length; j++) {
+                        ownerArray.push(owners[j].name);
+                    }
+                    card.querySelector('#eigenaars').innerHTML = ownerArray.join(', ');
+
                     card.querySelector('#grootte').innerHTML = field[i].size + 'm²';
                     card.querySelector('#crops').innerHTML = field[i].crops;
-
 
                     // add link to rent field in card
                     let link = document.createElement('a');
@@ -132,7 +140,7 @@ export default {
                     link.classList.add('btn');
                     card.appendChild(link);
 
-                    if (field[i].owner.firstname !== null) {
+                    if (field[i].available === false || field[i].owner.length === 3) {
                         card.querySelector('.availability').classList.add('rented');
                         card.querySelector('.availability').innerHTML = 'Verhuurd';
                     } else {
