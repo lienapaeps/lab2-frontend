@@ -12,6 +12,7 @@ import Veld from '../views/Veld.vue';
 import AddBoerderij from '../views/AddBoerderij.vue';
 import MijnBoerderijen from '../views/MijnBoerderijen.vue';
 import ConfigBoerderij from '../views/ConfigBoerderij.vue';
+import AddVeld from '../views/AddVeld.vue';
 
 const routes = [
   { path: "/", component: Home },
@@ -27,6 +28,7 @@ const routes = [
   { path: "/addBoerderij", component: AddBoerderij },
   { path: "/profiel/boerderijen", component: MijnBoerderijen },
   { path: "/profiel/boerderijen/config/:id", component: ConfigBoerderij },
+  { path: "/addVeld/:id", component: AddVeld },
 ];
 
 const router = createRouter({

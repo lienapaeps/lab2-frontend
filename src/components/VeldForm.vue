@@ -1,120 +1,188 @@
+<script setup>
+import { ref, reactive, onMounted } from 'vue';
+
+// get farm id from url
+const farmId = window.location.pathname.split('/')[2];
+// console.log(farmId);
+
+// crops
+let groenten = [
+    "Aardpeer",
+    "Ajuin",
+    "Andijvie",
+    "Artisjok",
+    "Asperge (groen)",
+    "Asperge (wit)",
+    "Aubergine",
+    "Augurk",
+    "Bloemkool",
+    "Boerenkool",
+    "Broccoli",
+    "Champignons",
+    "Courgette",
+    "Groene kool",
+    "IJsbergsla",
+    "Kervel",
+    "Knolselder",
+    "Komkommer",
+    "Kropsla",
+    "Paksoi",
+    "Paprika",
+    "Pastinaak",
+    "Peultjes",
+    "Prei",
+    "Raap",
+    "Radijs",
+    "Rammenas",
+    "Rode biet",
+    "Rode kool",
+    "Rucola",
+    "Savooikool",
+    "Schorseneer",
+    "Selder",
+    "Snijboon",
+    "Spinazie",
+    "Spitskool",
+    "Spruitjes",
+    "Tomaten",
+    "Tuinbonen",
+    "Venkel",
+    "Witloof",
+    "Witte kool",
+    "Wortel",
+    "Zeekool",
+    "Zevenblad",
+    "Zomerpostelein",
+    "Zomerpompoen"
+]
+
+let fruit = [
+    "Aardbei",
+    "Appel",
+    "Blauwe bes",
+    "Braam bes",
+    "Cassisbes",
+    "Framboos",
+    "Kers",
+    "Kiwibes",
+    "Kweepeer",
+    "Peer",
+    "Pruim",
+    "Rode bes",
+    "Stekelbes",
+    "Veenbes"
+]
+
+function addCrops() {
+    let select = document.querySelector("#crops");
+
+    groenten.forEach(groente => {
+        let option = document.createElement("option");
+        option.value = groente;
+        option.textContent = groente;
+        select.appendChild(option);
+    })
+
+    fruit.forEach(fruit => {
+        let option = document.createElement('option');
+        option.value = fruit;
+        option.innerHTML = fruit;
+        select.appendChild(option);
+    });
+}
+
+// function addField() {
+//     let btn = document.querySelector("#addField").addEventListener("click", function () {
+//         let name = document.querySelector("#name").value;
+//         let grootte = document.querySelector("#grootte").value;
+
+//         let crops = [];
+//         let select = document.querySelector('#crops');
+//         for (let i = 0; i < select.length; i++) {
+//             if (select.options[i].selected) {
+//                 crops.push(select.options[i].value);
+//             }
+//         }
+
+//         fetch("https://plant-en-pluk.onrender.com/api/v1/fields", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Authorization": "Bearer " + localStorage.getItem("token")
+//             },
+//             mode: "cors",
+//             body: JSON.stringify({
+//                 name: name,
+//                 grootte: grootte,
+//                 crops: crops,
+//             })
+//         })
+//             .then(response => response.json())
+//             .then((json) => {
+//                 if (json.status === "success") {
+//                     console.log(json);
+//                     // window.location.href = "/profiel/boerderijen/config/" + farmId;
+//                 } else {
+//                     let feedback = document.querySelector(".alert");
+
+//                     console.log(json);
+
+//                     feedback.textContent = json.message;
+//                     feedback.classList.remove("hidden");
+//                     feedback.style.backgroundColor = "#f8d7da";
+//                     feedback.style.color = "#C82424";
+//                 }
+//             })
+//             .catch(error => console.log(error));
+//     })
+// }
+
+onMounted(() => {
+    // addField();
+    addCrops();
+})
+
+</script>
+
 <template>
     <div class="content">
-        <h1>Je velden toevoegen</h1>
+        <h1>Een veld toevoegen</h1>
 
-        <div class="alert hidden">
-            Here is some feedback
-        </div>
         <div class="form-group">
-            <form action="#">
-                <h2>Stap 2</h2>
-                <p>Teken nu op de map de grootte van je velden die je zult verhuren.</p>
-                <div id="mapContainer"></div>
-
-                <input type="submit" value="Volgende">
-
-                <!-- locatie -->
-                <!-- polygon -->
+            <div class="alert hidden">
+                Here is some feedback
+            </div>
+            <form id="veld" action="#">
+                <div class="group">
+                    <label for="name">Veld naam</label>
+                    <input type="text" id="name" name="name" placeholder="Veld naam">
+                </div>
+                <div class="group">
+                    <div class="group">
+                        <label for="grootte">Grootte</label>
+                        <input type="text" id="grootte" name="grootte" placeholder="Grootte (m²)">
+                    </div>
+                </div>
+                <div class="group-group">
+                    <div class="group">
+                        <label for="crops">Selecteer welke gewassen er geplant kunnen worden op dit veld:</label>
+                        <select name="crops" id="crops" multiple>
+                        </select>
+                    </div>
+                </div>
+                <input type="submit" id="addField" value="Toevoegen">
             </form>
         </div>
 
     </div>
 </template>
 
-<script>
-// import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-
-// import 'leaflet-search/dist/leaflet-search.min.css';
-import 'leaflet-control-geocoder/dist/Control.Geocoder.js'
-import 'leaflet-control-geocoder/dist/Control.Geocoder.css'
-
-import '@geoman-io/leaflet-geoman-free';
-import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
-
-export default {
-    name: "LeafletMap",
-    data() {
-        return {
-            map: null,
-            searchControl: null,
-        };
-    },
-    mounted() {
-
-        this.map = L.map("mapContainer").setView([51.027421, 4.480052], 11);
-        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(this.map);
-
-        // search bar and zoom buttons
-        L.Control.geocoder().addTo(this.map);
-
-        // get response from search
-        this.map.on('geocoder/showlocation', function (e) {
-            console.log(e);
-        });
-
-        // https://docs.mapbox.com/mapbox.js/api/v3.3.1/
-
-        // add drawing tool to map https://github.com/geoman-io/leaflet-geoman
-        this.map.pm.addControls({
-            position: 'topleft',
-            drawCircle: false,
-            drawMarker: false,
-            drawPolyline: false,
-            drawRectangle: false,
-            drawCircleMarker: false,
-            drawPolygon: true,
-            editMode: false,
-            dragMode: false,
-            cutPolygon: false,
-            removalMode: true,
-            textMarker: false,
-        });
-
-        // add event listener to map
-        this.map.on('pm:create', e => {
-            // console.log(e);
-
-            // get coordinates of polygon
-            let coordinates = e.layer._latlngs[0];
-            console.log(coordinates);
-
-        });
-
-        // make search bar expanded
-        document.querySelector('.leaflet-control-geocoder').classList.add('leaflet-control-geocoder-expanded');
-
-        // change width of search bar
-        document.querySelector('.leaflet-control-geocoder-form input').style.width = '400px';
-        document.querySelector('.leaflet-control-geocoder-form input').style.height = '40px';
-
-        // change placeholder of search bar
-        document.querySelector('.leaflet-control-geocoder-form input').placeholder = 'Zoeken';
-    },
-    onBeforeUnmount() {
-        if (this.map) {
-            this.map.remove();
-        }
-    },
-};
-</script>
-
 <style scoped>
 /*  mobile */
-#mapContainer {
-    width: 100%;
-    height: 500px;
-    margin-bottom: 2rem;
-}
-
 .content {
-    margin-left: 25%;
     padding-left: 2rem;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    padding-right: 2rem;
+    margin-top: 1rem;
 }
 
 /* form  */
@@ -144,18 +212,36 @@ input[type=submit]:hover {
     background-color: var(--deepSeaGreen500);
 }
 
-.form-group {
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 3rem;
-    margin-right: 2rem;
+#crops {
+    height: 200px;
 }
 
 .group {
     margin-bottom: .5rem;
+    width: 100%;
 }
 
 /*  desktop */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .content {
+        margin-left: 25%;
+        padding-left: 2rem;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-group {
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
+        margin-right: 2rem;
+    }
+
+    .group-group {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
 </style>

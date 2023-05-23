@@ -40,17 +40,14 @@
                         <input type="text" id="phonenumber" name="phonenumber" placeholder="Telefoonnummer">
                     </div>
                 </div>
-                <div class="group-group">
-                    <div class="group">
-                        <label for="crops">Selecteer welke gewassen er geplant kunnen worden op je velden:</label>
-                        <select name="crops" id="crops" multiple></select>
-                    </div>
-                </div>
 
                 <p>Zoek op de map je adres en teken de oppervlakte van je boerderij.</p>
                 <div id="mapContainer"></div>
                 <p id="polygon"></p>
                 <p id="location"></p>
+                <p id="map"></p>
+
+                <!-- https://codesandbox.io/s/sad-bogdan-dqxse -->
 
                 <input type="submit" value="Toevoegen">
             </form>
@@ -134,89 +131,6 @@ export default {
         // change placeholder of search bar
         document.querySelector('.leaflet-control-geocoder-form input').placeholder = 'Zoeken';
 
-        let groenten = [
-            "Aardpeer",
-            "Ajuin",
-            "Andijvie",
-            "Artisjok",
-            "Asperge (groen)",
-            "Asperge (wit)",
-            "Aubergine",
-            "Augurk",
-            "Bloemkool",
-            "Boerenkool",
-            "Broccoli",
-            "Champignons",
-            "Courgette",
-            "Groene kool",
-            "IJsbergsla",
-            "Kervel",
-            "Knolselder",
-            "Komkommer",
-            "Kropsla",
-            "Paksoi",
-            "Paprika",
-            "Pastinaak",
-            "Peultjes",
-            "Prei",
-            "Raap",
-            "Radijs",
-            "Rammenas",
-            "Rode biet",
-            "Rode kool",
-            "Rucola",
-            "Savooikool",
-            "Schorseneer",
-            "Selder",
-            "Snijboon",
-            "Spinazie",
-            "Spitskool",
-            "Spruitjes",
-            "Tomaten",
-            "Tuinbonen",
-            "Venkel",
-            "Witloof",
-            "Witte kool",
-            "Wortel",
-            "Zeekool",
-            "Zevenblad",
-            "Zomerpostelein",
-            "Zomerpompoen"
-        ]
-
-        let fruit = [
-            "Aardbei",
-            "Appel",
-            "Blauwe bes",
-            "Braam bes",
-            "Cassisbes",
-            "Framboos",
-            "Kers",
-            "Kiwibes",
-            "Kweepeer",
-            "Peer",
-            "Pruim",
-            "Rode bes",
-            "Stekelbes",
-            "Veenbes"]
-
-        // use groenten array to create options in select
-        let select = document.querySelector('#crops');
-        groenten.forEach(groente => {
-            let option = document.createElement('option');
-            option.value = groente;
-            option.innerHTML = groente;
-            select.appendChild(option);
-        });
-
-        // use fruit array to create options in select
-        fruit.forEach(fruit => {
-            let option = document.createElement('option');
-            option.value = fruit;
-            option.innerHTML = fruit;
-            select.appendChild(option);
-        });
-
         // luister naar submit
         document.querySelector('#boerderij').addEventListener('submit', e => {
             e.preventDefault();
@@ -228,14 +142,6 @@ export default {
             let city = document.querySelector('#city').value;
             let phonenumber = document.querySelector('#phonenumber').value;
 
-            let crops = [];
-            let select = document.querySelector('#crops');
-            for (let i = 0; i < select.length; i++) {
-                if (select.options[i].selected) {
-                    crops.push(select.options[i].value);
-                }
-            }
-
             let coordinates = document.querySelector('#polygon').value;
             let location = document.querySelector('#location').value;
 
@@ -246,7 +152,6 @@ export default {
                 postalcode: postalcode,
                 city: city,
                 phonenumber: phonenumber,
-                crops: crops,
                 polygon: coordinates,
                 location: location
             }

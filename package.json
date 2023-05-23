@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@geoman-io/leaflet-geoman-free": "^2.14.2",
+    "html2canvas": "^1.4.1",
     "leaflet-control-custom": "^1.0.0",
     "leaflet-control-geocoder": "^2.4.0",
+    "leaflet-simple-map-screenshoter": "^0.5.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

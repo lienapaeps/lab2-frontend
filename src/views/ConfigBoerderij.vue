@@ -108,6 +108,7 @@ onMounted(() => {
 
         <div v-for="boerderij in boerderijen.boerderijen" :key="boerderij.id">
             <h2 id="boerderijnaam">Boerderij {{ boerderij.name }}</h2>
+            <router-link class="add" :to="'/addVeld/' + boerderij._id">+</router-link>
         </div>
 
         <hr>
@@ -118,6 +119,12 @@ onMounted(() => {
 
         <h2>Velden</h2>
         <div id="velden">
+            <!-- als er nog geen velden zijn -->
+            <div v-if="velden.velden.length === 0">
+                <p>Er zijn nog geen velden toegevoegd.</p>
+            </div>
+
+            <!-- als er wel velden zijn -->
             <div class="card-veld" v-for="veld in velden.velden" :key="veld.id">
                 <h3 id="veldnaam">{{ veld.name }}</h3>
                 <div class="availability"></div>
@@ -127,12 +134,34 @@ onMounted(() => {
                 <a class="btn" href="#">Bewerken</a>
                 <a class="btn--outline" href="#" v-on:click="verwijderVeld(veld._id)">Verwijderen</a>
             </div>
+
         </div>
     </div>
 </template>
 
 <style scoped>
 /*  mobile */
+a {
+    color: var(--deepSeaGreen500);
+}
+
+a.add {
+    background-color: var(--deepSeaGreen800);
+    border-radius: 50%;
+    color: #fff;
+    display: block;
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.add {
+    position: absolute;
+    top: 16rem;
+    right: 2rem;
+    height: 50px;
+    width: 50px;
+}
+
 .btn {
     color: #fff;
     margin-top: 1rem;
@@ -164,6 +193,8 @@ hr {
     display: flex;
     width: 100%;
     flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 #boerderijnaam {
@@ -219,14 +250,11 @@ hr {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* .card-veld:nth-child(1) {
-    display: none;
-} */
-
 .content {
     padding-left: 2rem;
     padding-right: 2rem;
     margin-top: 8rem;
+    margin-bottom: 6rem;
 }
 
 #veldnaam {
@@ -255,6 +283,10 @@ a {
 
     .arrow {
         left: 26%;
+    }
+
+    .add {
+        right: 3rem;
     }
 }
 
