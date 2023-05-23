@@ -1,9 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
-
-// get farm id from url
-const farmId = window.location.pathname.split('/')[2];
-// console.log(farmId);
+import { onMounted } from 'vue';
 
 // crops
 let groenten = [
@@ -91,51 +87,56 @@ function addCrops() {
     });
 }
 
-// function addField() {
-//     let btn = document.querySelector("#addField").addEventListener("click", function () {
-//         let name = document.querySelector("#name").value;
-//         let grootte = document.querySelector("#grootte").value;
+function addField() {
+    let btn = document.querySelector("#addField").addEventListener("click", function () {
+        let name = document.querySelector("#fieldname").value;
+        let grootte = document.querySelector("#grootte").value;
 
-//         let crops = [];
-//         let select = document.querySelector('#crops');
-//         for (let i = 0; i < select.length; i++) {
-//             if (select.options[i].selected) {
-//                 crops.push(select.options[i].value);
-//             }
-//         }
+        let crops = [];
+        let select = document.querySelector('#crops');
+        for (let i = 0; i < select.length; i++) {
+            if (select.options[i].selected) {
+                crops.push(select.options[i].value);
+            }
+        }
 
-//         fetch("https://plant-en-pluk.onrender.com/api/v1/fields", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "Authorization": "Bearer " + localStorage.getItem("token")
-//             },
-//             mode: "cors",
-//             body: JSON.stringify({
-//                 name: name,
-//                 grootte: grootte,
-//                 crops: crops,
-//             })
-//         })
-//             .then(response => response.json())
-//             .then((json) => {
-//                 if (json.status === "success") {
-//                     console.log(json);
-//                     // window.location.href = "/profiel/boerderijen/config/" + farmId;
-//                 } else {
-//                     let feedback = document.querySelector(".alert");
+        let farmId = window.location.pathname.split('/')[2];
 
-//                     console.log(json);
+        let dataVeld = {
+            farmId: farmId,
+            name: name,
+            grootte: grootte,
+            crops: crops,
+        }
 
-//                     feedback.textContent = json.message;
-//                     feedback.classList.remove("hidden");
-//                     feedback.style.backgroundColor = "#f8d7da";
-//                     feedback.style.color = "#C82424";
-//                 }
-//             })
-//             .catch(error => console.log(error));
-//     })
-// }
+        fetch("https://plant-en-pluk.onrender.com/api/v1/fields", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+            mode: "cors",
+            body: JSON.stringify(dataVeld)
+        })
+            .then(response => response.json())
+            .then((data) => {
+                if (data.status === "success") {
+                    console.log(data);
+                    // window.location.href = "/profiel/boerderijen/config/" + farmId;
+                } else {
+                    let feedback = document.querySelector(".alert");
+
+                    console.log(data);
+
+                    feedback.textContent = data.message;
+                    feedback.classList.remove("hidden");
+                    feedback.style.backgroundColor = "#f8d7da";
+                    feedback.style.color = "#C82424";
+                }
+            })
+            .catch(error => console.log(error));
+    })
+}
 
 onMounted(() => {
     // addField();
@@ -154,8 +155,8 @@ onMounted(() => {
             </div>
             <form id="veld" action="#">
                 <div class="group">
-                    <label for="name">Veld naam</label>
-                    <input type="text" id="name" name="name" placeholder="Veld naam">
+                    <label for="fieldname">Veld naam</label>
+                    <input type="text" id="fieldname" name="fieldname" placeholder="Veld naam">
                 </div>
                 <div class="group">
                     <div class="group">
@@ -166,8 +167,7 @@ onMounted(() => {
                 <div class="group-group">
                     <div class="group">
                         <label for="crops">Selecteer welke gewassen er geplant kunnen worden op dit veld:</label>
-                        <select name="crops" id="crops" multiple>
-                        </select>
+                        <select name="crops" id="crops" multiple></select>
                     </div>
                 </div>
                 <input type="submit" id="addField" value="Toevoegen">

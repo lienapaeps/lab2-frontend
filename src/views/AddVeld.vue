@@ -1,5 +1,4 @@
 <script setup>
-import BoerderijForm from '../components/BoerderijForm.vue';
 import VeldForm from '../components/VeldForm.vue';
 
 if (!localStorage.getItem('token')) {
