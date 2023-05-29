@@ -88,7 +88,9 @@ function addCrops() {
 }
 
 function addField() {
-    let btn = document.querySelector("#addField").addEventListener("click", function () {
+    document.querySelector("#veld").addEventListener("submit", e => {
+        e.preventDefault();
+
         let name = document.querySelector("#fieldname").value;
         let grootte = document.querySelector("#grootte").value;
 
@@ -105,9 +107,11 @@ function addField() {
         let dataVeld = {
             farmId: farmId,
             name: name,
-            grootte: grootte,
+            size: grootte,
             crops: crops,
         }
+
+        console.log(dataVeld);
 
         fetch("https://plant-en-pluk.onrender.com/api/v1/fields", {
             method: "POST",
@@ -120,26 +124,26 @@ function addField() {
         })
             .then(response => response.json())
             .then((data) => {
+                // console.log(data);
                 if (data.status === "success") {
-                    console.log(data);
-                    // window.location.href = "/profiel/boerderijen/config/" + farmId;
+                    window.location.href = "/profiel/boerderijen/config/" + farmId;
                 } else {
                     let feedback = document.querySelector(".alert");
-
-                    console.log(data);
-
+                    // console.log(data);
                     feedback.textContent = data.message;
                     feedback.classList.remove("hidden");
                     feedback.style.backgroundColor = "#f8d7da";
                     feedback.style.color = "#C82424";
                 }
             })
-            .catch(error => console.log(error));
+            .catch((error) => {
+                console.log(error);
+            });
     })
 }
 
 onMounted(() => {
-    // addField();
+    addField();
     addCrops();
 })
 
@@ -156,21 +160,21 @@ onMounted(() => {
             <form id="veld" action="#">
                 <div class="group">
                     <label for="fieldname">Veld naam</label>
-                    <input type="text" id="fieldname" name="fieldname" placeholder="Veld naam">
+                    <input type="text" id="fieldname" name="fieldname" placeholder="Veld naam" required>
                 </div>
                 <div class="group">
                     <div class="group">
                         <label for="grootte">Grootte</label>
-                        <input type="text" id="grootte" name="grootte" placeholder="Grootte (m²)">
+                        <input type="text" id="grootte" name="grootte" placeholder="Grootte (m²)" required>
                     </div>
                 </div>
                 <div class="group-group">
                     <div class="group">
                         <label for="crops">Selecteer welke gewassen er geplant kunnen worden op dit veld:</label>
-                        <select name="crops" id="crops" multiple></select>
+                        <select name="crops" id="crops" multiple required></select>
                     </div>
                 </div>
-                <input type="submit" id="addField" value="Toevoegen">
+                <input type="submit" value="Toevoegen">
             </form>
         </div>
 

@@ -49,6 +49,7 @@ export default {
         // change width of search bar
         document.querySelector('.leaflet-control-geocoder-form input').style.width = '200px';
         document.querySelector('.leaflet-control-geocoder-form input').style.height = '40px';
+        // document.querySelector('.leaflet-control-geocoder-form').style.border = 'none';
 
         // change placeholder of search bar
         document.querySelector('.leaflet-control-geocoder-form input').placeholder = 'Zoeken';
