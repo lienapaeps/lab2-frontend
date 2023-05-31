@@ -17,6 +17,9 @@
             <p id="phonenumber"></p>
         </div>
 
+        <div class="alert hidden">
+            Here is some feedback
+        </div>
 
         <h2>Velden</h2>
         <div id="velden">
@@ -27,6 +30,7 @@
                 <p id="eigenaars"></p>
                 <p id="grootte"></p>
                 <p id="crops"></p>
+                <a class="btn" href="#">Huren</a>
             </div>
         </div>
     </div>
@@ -101,7 +105,6 @@ export default {
             });
 
         const getFields = "https://plant-en-pluk.onrender.com/api/v1/fields/farm/" + boerderijId;
-        console.log(getFields);
 
         fetch(getFields, {
             'headers': {
@@ -111,7 +114,7 @@ export default {
             .then(response => response.json())
             .then(data => {
                 // console.log(data);
-                console.log(data.data.fields);
+                // console.log(data.data.fields);
                 const field = data.data.fields;
 
                 // loop over fields
@@ -130,15 +133,90 @@ export default {
                     }
                     card.querySelector('#eigenaars').innerHTML = ownerArray.join(', ');
 
+                    if (ownerArray.length === 0) {
+                        card.querySelector('#eigenaars').innerHTML = 'Nog geen eigenaar';
+                    }
+
                     card.querySelector('#grootte').innerHTML = field[i].size + 'm²';
                     card.querySelector('#crops').innerHTML = field[i].crops;
 
-                    // add link to rent field in card
-                    let link = document.createElement('a');
-                    link.setAttribute('href', '/veld/' + field[i]._id);
-                    link.innerHTML = 'Huren';
-                    link.classList.add('btn');
-                    card.appendChild(link);
+                    let fieldId = field[i]._id;
+                    // console.log(fieldId);
+
+                    // get firstname from token in localstorage
+                    const token = localStorage.getItem('token');
+                    const base64Url = token.split('.')[1];
+                    const base64 = base64Url.replace('-', '+').replace('_', '/');
+                    const user = JSON.parse(window.atob(base64));
+                    // console.log(user.firstname);
+
+                    let firstname = user.firstname;
+                    let userId = user.uid;
+                    // console.log(firstname);
+                    // console.log(userId);
+
+                    let userData = {
+                        id: userId,
+                        name: firstname
+                    }
+
+                    // get id from field when clicking on card btn
+                    card.querySelector('.btn').addEventListener('click', function () {
+                        // console.log(fieldId);
+
+                        // when user clicks on rent btn, update owners array in field
+                        const rentField = "https://plant-en-pluk.onrender.com/api/v1/fields/" + fieldId;
+
+                        fetch(rentField, {
+                            method: 'PUT',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": "Bearer " + localStorage.getItem("token"),
+                            },
+                            mode: "cors",
+                            body: JSON.stringify(userData)
+                        }).then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                                let feedback = document.querySelector(".alert");
+
+                                // let index = donuts.donuts.donuts.findIndex(donut => donut._id === id);
+                                // donuts.donuts.donuts.splice(index, 1);
+
+                                if (data.status === "success") {
+                                    feedback.innerHTML = data.message;
+                                    feedback.classList.remove("hidden");
+                                    feedback.style.backgroundColor = "#D2F9E3";
+                                    feedback.style.color = "#075F4A";
+
+                                    // Bijwerken van de owner array in de veldkaart
+                                    const ownerArrayElement = document.querySelector("#eigenaars");
+                                    ownerArrayElement.innerHTML = "";
+
+                                    data.data.field.owner.forEach(owner => {
+                                        const ownerNameElement = document.createElement("span");
+                                        ownerNameElement.textContent = owner.firstname;
+                                        ownerArrayElement.appendChild(ownerNameElement);
+                                    });
+
+                                } else {
+                                    feedback.innerHTML = data.message;
+                                    feedback.classList.remove("hidden");
+                                    feedback.style.backgroundColor = "#F9D2D2";
+                                    feedback.style.color = "#A10707";
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+
+                                let feedback = document.querySelector(".alert");
+                                feedback.innerHTML = data.message;
+                                feedback.classList.remove("hidden");
+                                feedback.style.backgroundColor = "#F9D2D2";
+                                feedback.style.color = "#A10707";
+                            })
+
+                    });
 
                     if (field[i].available === false || field[i].owner.length === 3) {
                         card.querySelector('.availability').classList.add('rented');
@@ -150,11 +228,13 @@ export default {
 
                     document.querySelector('#velden').appendChild(card);
                 }
+
             })
             .catch(error => {
                 console.log(error);
                 window.location.href = "/login";
             });
+
     },
     onBeforeUnmount() {
         if (this.map) {
@@ -178,8 +258,16 @@ export default {
     flex-direction: column;
 }
 
+#veldnaam {
+    text-transform: capitalize;
+}
+
 #boerderijnaam {
     margin-top: 1rem;
+}
+
+a.btn {
+    color: var(--offWhite);
 }
 
 .free {

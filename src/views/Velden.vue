@@ -69,9 +69,9 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
-            <div class="in-de-buurt">
+            <!-- <div class="in-de-buurt">
                 <h2>Velden in de buurt</h2>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
