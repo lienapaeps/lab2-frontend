@@ -180,24 +180,16 @@ export default {
                                 console.log(data);
                                 let feedback = document.querySelector(".alert");
 
-                                // let index = donuts.donuts.donuts.findIndex(donut => donut._id === id);
-                                // donuts.donuts.donuts.splice(index, 1);
-
                                 if (data.status === "success") {
                                     feedback.innerHTML = data.message;
                                     feedback.classList.remove("hidden");
                                     feedback.style.backgroundColor = "#D2F9E3";
                                     feedback.style.color = "#075F4A";
 
-                                    // Bijwerken van de owner array in de veldkaart
-                                    const ownerArrayElement = document.querySelector("#eigenaars");
-                                    ownerArrayElement.innerHTML = "";
-
-                                    data.data.field.owner.forEach(owner => {
-                                        const ownerNameElement = document.createElement("span");
-                                        ownerNameElement.textContent = owner.firstname;
-                                        ownerArrayElement.appendChild(ownerNameElement);
-                                    });
+                                    // reload page
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 2000);
 
                                 } else {
                                     feedback.innerHTML = data.message;
