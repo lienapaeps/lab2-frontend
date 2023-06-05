@@ -35,6 +35,8 @@ function getVelden() {
             velden.velden = json.data.fields;
             // console.log(velden.velden)
 
+            console.log(velden.velden)
+
         }).catch(err => {
             console.log(err);
         })

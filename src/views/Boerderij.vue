@@ -138,7 +138,13 @@ export default {
                     }
 
                     card.querySelector('#grootte').innerHTML = field[i].size + 'm²';
-                    card.querySelector('#crops').innerHTML = field[i].crops;
+
+                    let crops = field[i].crops;
+                    let cropsArray = [];
+                    for (let j = 0; j < crops.length; j++) {
+                        cropsArray.push(crops[j].name);
+                    }
+                    card.querySelector('#crops').innerHTML = cropsArray.join(', ');
 
                     let fieldId = field[i]._id;
                     // console.log(fieldId);

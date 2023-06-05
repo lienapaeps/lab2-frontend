@@ -94,21 +94,13 @@ function addField() {
         let name = document.querySelector("#fieldname").value;
         let grootte = document.querySelector("#grootte").value;
 
-        let crops = [];
-        let select = document.querySelector('#crops');
-        for (let i = 0; i < select.length; i++) {
-            if (select.options[i].selected) {
-                crops.push(select.options[i].value);
-            }
-        }
-
         let farmId = window.location.pathname.split('/')[2];
 
         let dataVeld = {
             farmId: farmId,
             name: name,
             size: grootte,
-            crops: crops,
+            crops: []
         }
 
         console.log(dataVeld);
@@ -126,7 +118,16 @@ function addField() {
             .then((data) => {
                 // console.log(data);
                 if (data.status === "success") {
-                    window.location.href = "/profiel/boerderijen/config/" + farmId;
+                    // window.location.href = "/profiel/boerderijen/config/" + farmId;
+                    document.querySelector(".form-veld").classList.add("hidden");
+                    document.querySelector(".form-crops").classList.remove("hidden");
+
+                    // console.log(data.data.field._id);
+                    localStorage.setItem("fieldId", data.data.field._id);
+
+                    document.querySelector(".veld-title").classList.add("hidden");
+                    document.querySelector(".crop-title").classList.remove("hidden");
+                    document.querySelector(".crop-descr").classList.remove("hidden");
                 } else {
                     let feedback = document.querySelector(".alert");
                     // console.log(data);
@@ -140,6 +141,71 @@ function addField() {
                 console.log(error);
             });
     })
+
+    // nadat de velden zijn toegevoegd, worden de gewassen toegevoegd
+    document.querySelector("#cropsForm").addEventListener("submit", e => {
+        e.preventDefault();
+
+        let crops = [];
+        let select = document.querySelector('#crops');
+        for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].selected) {
+                crops.push(select.options[i].value);
+            }
+        }
+
+        // get field id from localstorage
+        let fieldId = localStorage.getItem("fieldId");
+
+        let dataCrops = {
+            crops: []
+        }
+
+        // maak voor elk gewas een object aan en push deze in de crops array
+        crops.forEach(crop => {
+            let cropObject = {
+                name: crop,
+                fieldId: fieldId
+            }
+            dataCrops.crops.push(cropObject);
+        })
+
+        let farmId = window.location.pathname.split('/')[2];
+
+        console.log(dataCrops);
+
+        fetch("https://plant-en-pluk.onrender.com/api/v1/crops", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+            mode: "cors",
+            body: JSON.stringify(dataCrops)
+        })
+            .then(response => response.json())
+            .then((data) => {
+                // console.log(data);
+                if (data.status === "success") {
+                    // console.log(data);
+                    localStorage.removeItem("fieldId");
+                    window.location.href = "/profiel/boerderijen/config/" + farmId;
+                } else {
+                    let feedback = document.querySelector(".alert");
+                    // console.log(data);
+                    feedback.textContent = data.message;
+                    feedback.classList.remove("hidden");
+                    feedback.style.backgroundColor = "#f8d7da";
+                    feedback.style.color = "#C82424";
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    })
+
+
 }
 
 onMounted(() => {
@@ -151,9 +217,13 @@ onMounted(() => {
 
 <template>
     <div class="content">
-        <h1>Een veld toevoegen</h1>
+        <h1 class="veld-title">Een veld toevoegen</h1>
+        <h1 class="crop-title hidden">Groenten en fruit toevoegen</h1>
+        <p class="crop-descr hidden">Selecteer welke gewassen er op dit veld geplant kunnen worden.</p>
 
-        <div class="form-group">
+
+
+        <div class="form-group form-veld">
             <div class="alert hidden">
                 Here is some feedback
             </div>
@@ -168,6 +238,21 @@ onMounted(() => {
                         <input type="text" id="grootte" name="grootte" placeholder="Grootte (m²)" required>
                     </div>
                 </div>
+                <!-- <div class="group-group">
+                    <div class="group">
+                        <label for="crops">Selecteer welke gewassen er geplant kunnen worden op dit veld:</label>
+                        <select name="crops" id="crops" multiple required></select>
+                    </div>
+                </div> -->
+                <input type="submit" value="Volgende">
+            </form>
+        </div>
+
+        <div class="form-group form-crops hidden">
+            <div class="alert hidden">
+                Here is some feedback
+            </div>
+            <form id="cropsForm" action="#">
                 <div class="group-group">
                     <div class="group">
                         <label for="crops">Selecteer welke gewassen er geplant kunnen worden op dit veld:</label>

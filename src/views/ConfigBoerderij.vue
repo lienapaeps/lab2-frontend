@@ -13,6 +13,10 @@ let velden = reactive({
     velden: []
 })
 
+let crops = reactive({
+    crops: []
+})
+
 let boerderijId = window.location.pathname.split("/")[4];
 
 function getBoerderijen() {
@@ -130,7 +134,7 @@ onMounted(() => {
                 <div class="availability"></div>
                 <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
                 <p id="grootte">{{ veld.size }} m²</p>
-                <span id="gewassen" v-for="crop in veld.crops" :key="crop.id">{{ crop }}</span>
+                <span id="gewassen" v-for="crop in veld.crops" :key="crop.id">{{ crop.name }},</span>
                 <a class="btn" href="#">Bewerken</a>
                 <a class="btn--outline" href="#" v-on:click="verwijderVeld(veld._id)">Verwijderen</a>
             </div>
