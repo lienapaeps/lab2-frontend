@@ -29,6 +29,7 @@
                 </div>
                 <p id="eigenaars"></p>
                 <p id="grootte"></p>
+                <h4>Beschikbare gewassen:</h4>
                 <p id="crops"></p>
                 <a class="btn" href="#">Huren</a>
             </div>

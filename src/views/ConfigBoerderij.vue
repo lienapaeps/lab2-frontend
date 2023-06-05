@@ -104,7 +104,7 @@ onMounted(() => {
 <template>
     <div class="content">
         <div class="arrow">
-            <router-link exact to="/profiel/boerderijen">
+            <router-link exact to="/profiel/mijn-boerderijen">
                 <img src="./../assets/left-arrow.svg" alt="arrow" />
             </router-link>
         </div>
@@ -112,7 +112,7 @@ onMounted(() => {
 
         <div v-for="boerderij in boerderijen.boerderijen" :key="boerderij.id">
             <h2 id="boerderijnaam">Boerderij {{ boerderij.name }}</h2>
-            <router-link class="add" :to="'/addVeld/' + boerderij._id">+</router-link>
+            <router-link class="add" :to="'/nieuw-veld/' + boerderij._id">+</router-link>
         </div>
 
         <hr>

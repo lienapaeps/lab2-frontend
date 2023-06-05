@@ -26,10 +26,10 @@ const routes = [
   { path: "/map", component: Map },
   { path: "/boerderij/:id", component: Boerderij },
   { path: "/veld/:id", component: Veld },
-  { path: "/addBoerderij", component: AddBoerderij },
-  { path: "/profiel/boerderijen", component: MijnBoerderijen },
-  { path: "/profiel/boerderijen/config/:id", component: ConfigBoerderij },
-  { path: "/addVeld/:id", component: AddVeld },
+  { path: "/nieuwe-boerderij", component: AddBoerderij },
+  { path: "/profiel/mijn-boerderijen", component: MijnBoerderijen },
+  { path: "/profiel/mijn-boerderijen/config/:id", component: ConfigBoerderij },
+  { path: "/nieuw-veld/:id", component: AddVeld },
   { path: "/huur-veld/:id", component: HuurVeld },
 ];
 

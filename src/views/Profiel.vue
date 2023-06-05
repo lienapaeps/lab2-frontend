@@ -38,7 +38,7 @@ let userId = user.uid;
             </div>
             <div class="verhuren">
                 <h2>Verhuren</h2>
-                <ProfielCard text="Verhuur mijn veld" src="verhuren.svg" router="/profiel/boerderijen" />
+                <ProfielCard text="Verhuur mijn veld" src="verhuren.svg" router="/profiel/mijn-boerderijen" />
             </div>
             <router-link @click="logOut()" exact to="/">
                 <div class="logout">

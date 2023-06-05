@@ -64,10 +64,10 @@ onMounted(() => {
                     <p>{{ boerderij.street }} {{ boerderij.streetnumber }}, {{ boerderij.postalcode }} {{ boerderij.city }}
                     </p>
                     <br>
-                    <router-link :to="'/profiel/boerderijen/config/' + boerderij._id">Velden beheren</router-link>
+                    <router-link :to="'/profiel/mijn-boerderijen/config/' + boerderij._id">Velden beheren</router-link>
                 </div>
             </div>
-            <router-link class="add" exact to="/addBoerderij">Boerderij toevoegen</router-link>
+            <router-link class="add" exact to="/nieuwe-boerderij">Boerderij toevoegen</router-link>
         </div>
     </div>
 </template>

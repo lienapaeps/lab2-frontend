@@ -89,17 +89,20 @@ onMounted(() => {
             Here is some feedback
         </div>
 
-        <h2>Jouw gekozen veld</h2>
+        <h2>Jouw veld</h2>
         <div id="velden">
             <div class="card-veld" v-for="veld in velden" :key="veld.id">
                 <h3 id="veldnaam">{{ veld.name }}</h3>
                 <div class="availability"></div>
                 <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
                 <p id="grootte">{{ veld.size }} m²</p>
-                <span id="gewassen" v-for="crop in veld.crops" :key="crop.id">{{ crop }}</span>
+                <h4>Nu aan het groeien:</h4>
+                <span id="gewassen" v-for="crop in veld.plannedCrops" :key="crop.id">{{ crop.name }}</span>
             </div>
-
         </div>
+
+        <h3>Progressie</h3>
+
     </div>
 </template>
 

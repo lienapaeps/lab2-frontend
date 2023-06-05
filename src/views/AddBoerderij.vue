@@ -11,7 +11,7 @@ if (!localStorage.getItem('token')) {
 <template>
     <div class="content">
         <div class="arrow">
-            <router-link exact to="/profiel/boerderijen">
+            <router-link exact to="/profiel/mijn-boerderijen">
                 <img src="./../assets/left-arrow.svg" alt="arrow" />
             </router-link>
         </div>

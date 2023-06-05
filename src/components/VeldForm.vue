@@ -119,7 +119,6 @@ function addField() {
             .then((data) => {
                 // console.log(data);
                 if (data.status === "success") {
-                    // window.location.href = "/profiel/boerderijen/config/" + farmId;
                     document.querySelector(".form-veld").classList.add("hidden");
                     document.querySelector(".form-crops").classList.remove("hidden");
 
@@ -190,7 +189,7 @@ function addField() {
                 if (data.status === "success") {
                     // console.log(data);
                     localStorage.removeItem("fieldId");
-                    window.location.href = "/profiel/boerderijen/config/" + farmId;
+                    window.location.href = "/profiel/mijn-boerderijen/config/" + farmId;
                 } else {
                     let feedback = document.querySelector(".alert");
                     // console.log(data);

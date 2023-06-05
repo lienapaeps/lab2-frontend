@@ -12,7 +12,7 @@ let boerderijId = window.location.pathname.split("/")[2];
 <template>
     <div class="content">
         <div class="arrow">
-            <router-link :to="'/profiel/boerderijen/config/' + boerderijId">
+            <router-link :to="'/profiel/mijn-boerderijen/config/' + boerderijId">
                 <img src="./../assets/left-arrow.svg" alt="arrow" />
             </router-link>
         </div>

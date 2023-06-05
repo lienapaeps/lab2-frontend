@@ -174,7 +174,7 @@ export default {
 
                     if (data.status === "success") {
                         console.log("tis gelukt");
-                        window.location.href = "/profiel/boerderijen";
+                        window.location.href = "/profiel/mijn-boerderijen";
                     } else {
                         let feedback = document.querySelector(".alert");
                         feedback.textContent = data.message;
