@@ -58,22 +58,26 @@ onMounted(() => {
             </div>
             <div class="mijn-velden">
                 <h2>Jouw velden</h2>
-                <div id="velden">
-                    <div class="veld" v-for="veld in velden.velden" :key="veld.id">
-                        <h3 id="veldnaam">{{ veld.name }}</h3>
-                        <div class="availability"></div>
-                        <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
-                        <p id="grootte">{{ veld.size }} m²</p>
-                        <span id="gewassen" v-for="crop in veld.crops" :key="crop.id">{{ crop }}</span>
+                <!-- als er nog geen velden zijn  -->
+                <div v-if="velden.velden.length === 0">
+                    <p>Je hebt nog geen velden gehuurd.</p>
+                </div>
+                <!-- als er wel velden zijn -->
+                <div v-else>
+                    <div id="velden">
+                        <div class="veld" v-for="veld in velden.velden" :key="veld.id">
+                            <h3 id="veldnaam">{{ veld.name }}</h3>
+                            <div class="availability"></div>
+                            <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
+                            <p id="grootte">{{ veld.size }} m²</p>
+                            <span id="gewassen" v-for="crop in veld.crops" :key="crop.id">{{ crop.name }},</span>
 
-                        <router-link class="btn" :to="'/veld/' + veld._id">Bekijk details</router-link>
+                            <router-link class="btn" :to="'/veld/' + veld._id">Bekijk details</router-link>
 
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="in-de-buurt">
-                <h2>Velden in de buurt</h2>
-            </div> -->
         </div>
     </div>
 </template>
