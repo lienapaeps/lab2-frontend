@@ -100,7 +100,8 @@ function addField() {
             farmId: farmId,
             name: name,
             size: grootte,
-            crops: []
+            crops: [],
+            plannedCrops: []
         }
 
         console.log(dataVeld);

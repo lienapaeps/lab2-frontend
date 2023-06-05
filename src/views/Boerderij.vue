@@ -149,73 +149,6 @@ export default {
                     let fieldId = field[i]._id;
                     // console.log(fieldId);
 
-                    // get firstname from token in localstorage
-                    const token = localStorage.getItem('token');
-                    const base64Url = token.split('.')[1];
-                    const base64 = base64Url.replace('-', '+').replace('_', '/');
-                    const user = JSON.parse(window.atob(base64));
-                    // console.log(user.firstname);
-
-                    let firstname = user.firstname;
-                    let userId = user.uid;
-                    // console.log(firstname);
-                    // console.log(userId);
-
-                    let userData = {
-                        id: userId,
-                        name: firstname
-                    }
-
-                    // get id from field when clicking on card btn
-                    card.querySelector('.btn').addEventListener('click', function () {
-                        // console.log(fieldId);
-
-                        // when user clicks on rent btn, update owners array in field
-                        const rentField = "https://plant-en-pluk.onrender.com/api/v1/fields/" + fieldId;
-
-                        fetch(rentField, {
-                            method: 'PUT',
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Authorization": "Bearer " + localStorage.getItem("token"),
-                            },
-                            mode: "cors",
-                            body: JSON.stringify(userData)
-                        }).then(res => res.json())
-                            .then(data => {
-                                console.log(data);
-                                let feedback = document.querySelector(".alert");
-
-                                if (data.status === "success") {
-                                    feedback.innerHTML = data.message;
-                                    feedback.classList.remove("hidden");
-                                    feedback.style.backgroundColor = "#D2F9E3";
-                                    feedback.style.color = "#075F4A";
-
-                                    // reload page
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 2000);
-
-                                } else {
-                                    feedback.innerHTML = data.message;
-                                    feedback.classList.remove("hidden");
-                                    feedback.style.backgroundColor = "#F9D2D2";
-                                    feedback.style.color = "#A10707";
-                                }
-                            })
-                            .catch(error => {
-                                console.log(error);
-
-                                let feedback = document.querySelector(".alert");
-                                feedback.innerHTML = data.message;
-                                feedback.classList.remove("hidden");
-                                feedback.style.backgroundColor = "#F9D2D2";
-                                feedback.style.color = "#A10707";
-                            })
-
-                    });
-
                     if (field[i].available === false || field[i].owner.length === 3) {
                         card.querySelector('.availability').classList.add('rented');
                         card.querySelector('.availability').innerHTML = 'Verhuurd';
@@ -225,6 +158,11 @@ export default {
                     }
 
                     document.querySelector('#velden').appendChild(card);
+
+                    // wanneer er op de knop 'huren' wordt geklikt, wordt de gebruiker naar de pagina van huur veld gestuurd met id van het veld in de url
+                    card.querySelector('.btn').addEventListener('click', () => {
+                        window.location.href = "/huur-veld/" + fieldId;
+                    });
                 }
 
             })
