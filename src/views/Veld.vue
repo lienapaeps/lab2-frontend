@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted, watch } from 'vue';
 
 if (!localStorage.getItem('token')) {
     window.location.href = "/login";
@@ -54,6 +54,7 @@ function getCropById() {
         }).then(json => {
             crop.value = json.data.crop;
             // console.log(crop.value);
+            // growthStage.value = crop.value.growthStage;
         }).catch(err => {
             console.log(err);
         })
@@ -90,7 +91,6 @@ function formatDate(dateString) {
     return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
-
 onMounted(() => {
     getVelden();
     getCropById();
@@ -125,7 +125,7 @@ onMounted(() => {
             </div>
         </div>
 
-        <h3>Progressie</h3>
+        <h2>Progressie</h2>
         <div class="card-crop">
             <h4>{{ crop.name }}</h4>
             <!-- als plantingDate gelijk is aan null, toon dan een button met "planten" -->
@@ -135,9 +135,13 @@ onMounted(() => {
             </div>
             <!-- als plantingDate niet gelijk is aan null, toon dan de progressie -->
             <div v-else>
-                <p>Je bent begonnen met planten op {{ formatDate(crop.plantingDate) }}</p>
-                <p>Geschatte oogstdatum: {{ formatDate(crop.harvestDate) }}</p>
-                <p>Je hebt {{ crop }}% van je gewas geplant.</p>
+                <p>Je bent begonnen met planten op <b>{{ formatDate(crop.plantingDate) }}</b></p>
+                <p>Geschatte oogstdatum: <b>{{ formatDate(crop.harvestDate) }}</b></p>
+                <p>Je plant is al <b>{{ crop.growthStage }}%</b> gegroeid.</p>
+
+                <div class="progress-bar">
+                    <div class="progress" :style="{ width: crop.growthStage + '%' }"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -149,36 +153,9 @@ a {
     color: var(--deepSeaGreen500);
 }
 
-a.add {
-    background-color: var(--deepSeaGreen800);
-    border-radius: 50%;
-    color: #fff;
-    display: block;
-    text-align: center;
-    font-size: 2.2rem;
-}
-
-.add {
-    position: absolute;
-    top: 16rem;
-    right: 2rem;
-    height: 50px;
-    width: 50px;
-}
-
 .btn {
     color: #fff;
     margin-top: 1rem;
-}
-
-#gewassen {
-    text-transform: capitalize;
-    margin-right: 0.5rem;
-}
-
-#eigenaars {
-    font-weight: 500;
-    margin-right: 0.5rem;
 }
 
 #eigenaars,
@@ -191,61 +168,6 @@ hr {
     border: 0;
     height: 1px;
     background: var(--offBlack100);
-}
-
-#velden {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-#boerderijnaam {
-    margin-top: 1rem;
-}
-
-#veldnaam {
-    text-transform: capitalize;
-}
-
-.free {
-    background-color: var(--deepSeaGreen500);
-    color: #fff;
-    padding: 10px;
-    margin-right: 70%;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.boerderij-info {
-    display: flex;
-    align-items: center;
-}
-
-.icon {
-    margin-right: 1rem;
-}
-
-.rented {
-    font-family: "DM Sans", sans-serif;
-    color: #fff;
-    background-color: var(--semanticRed);
-    max-width: 140px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-.available {
-    font-family: "DM Sans", sans-serif;
-    color: #fff;
-    background-color: var(--deepSeaGreen500);
-    max-width: 140px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 4px;
-
 }
 
 .card-veld {
@@ -270,10 +192,6 @@ hr {
     margin-bottom: 0.5rem;
 }
 
-a {
-    color: var(--offBlack900);
-}
-
 .arrow {
     position: absolute;
     top: 50px;
@@ -281,20 +199,24 @@ a {
     z-index: 10;
 }
 
+.progress {
+    height: 100%;
+    background-color: var(--deepSeaGreen500);
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: var(--offBlack100);
+    border-radius: 4px;
+}
 
 /*  desktop */
 @media (min-width: 992px) {
-    #velden {
-        display: flex;
-        flex-direction: row;
-    }
-
     .arrow {
         left: 26%;
-    }
-
-    .add {
-        right: 3rem;
     }
 }
 
