@@ -63,36 +63,38 @@ function getVelden() {
 
 const verwijderVeld = (id) => {
     if (localStorage.getItem("token")) {
-        fetch("https://plant-en-pluk.onrender.com/api/v1/fields/" + id, {
+        fetch(`https://plant-en-pluk.onrender.com/api/v1/fields/delete/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("token"),
             },
             mode: "cors",
-        }).then(res => {
-            return res.json();
-        }).then(json => {
-            // console.log("Veld verwijderd");
-
-            let feedback = document.querySelector(".alert");
-            feedback.innerHTML = "Veld is succesvol verwijderd!";
-            feedback.classList.remove("hidden");
-            feedback.style.backgroundColor = "#D2F9E3";
-            feedback.style.color = "#075F4A";
-
-            // na 3 seconden verdwijnt het succes bericht
-            setTimeout(() => {
-                feedback.classList.add("hidden");
-            }, 3000);
-
-            let index = velden.velden.findIndex(veld => veld._id === id);
-            velden.velden.splice(index, 1);
-        }).catch(err => {
-            console.log(err);
         })
+            .then((res) => res.json())
+            .then((json) => {
+
+                console.log(json)
+
+                let feedback = document.querySelector(".alert");
+                feedback.innerHTML = "Het veld is succesvol verwijderd!";
+                feedback.classList.remove("hidden");
+                feedback.style.backgroundColor = "#D2F9E3";
+                feedback.style.color = "#075F4A";
+
+                // na 3 seconden verdwijnt het succesbericht
+                setTimeout(() => {
+                    feedback.classList.add("hidden");
+                }, 3000);
+
+                let index = velden.velden.findIndex((veld) => veld._id === id);
+                velden.velden.splice(index, 1);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
-}
+};
 
 onMounted(() => {
     getBoerderijen();
@@ -135,7 +137,7 @@ onMounted(() => {
                 <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
                 <p id="grootte">{{ veld.size }} m²</p>
                 <p id="gewassen" v-for="crop in veld.crops" :key="crop.id">{{ crop.name }},</p>
-                <a class="btn" href="#">Bewerken</a>
+                <router-link class="btn" :to="'/config-veld/' + veld._id">Veld wijzigen</router-link>
                 <a class="btn--outline" href="#" v-on:click="verwijderVeld(veld._id)">Verwijderen</a>
             </div>
 

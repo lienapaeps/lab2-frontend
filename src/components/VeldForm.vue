@@ -221,8 +221,6 @@ onMounted(() => {
         <h1 class="crop-title hidden">Groenten en fruit toevoegen</h1>
         <p class="crop-descr hidden">Selecteer welke gewassen er op dit veld geplant kunnen worden.</p>
 
-
-
         <div class="form-group form-veld">
             <div class="alert hidden">
                 Here is some feedback

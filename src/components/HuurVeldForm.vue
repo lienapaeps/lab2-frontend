@@ -39,7 +39,7 @@ function hireField() {
     let cropId = document.querySelector('input[name="crop"]:checked').value;
     // console.log(cropId);
 
-    fetch("https://plant-en-pluk.onrender.com/api/v1/fields/" + veldId, {
+    fetch("https://plant-en-pluk.onrender.com/api/v1/fields/hire/" + veldId, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

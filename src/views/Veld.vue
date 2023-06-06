@@ -5,17 +5,15 @@ if (!localStorage.getItem('token')) {
     window.location.href = "/login";
 }
 
-let boerderijen = reactive({
-    boerderijen: []
-})
-
 let velden = reactive({
     velden: []
 })
 
+let crop = ref({});
+
 let veldId = window.location.pathname.split("/")[2];
 
-let boerderijId = "";
+let plannedCropsId;
 
 function getVelden() {
     if (localStorage.getItem("token")) {
@@ -32,7 +30,9 @@ function getVelden() {
             // console.log(json);
             velden.velden = json.data.field;
 
-            boerderijId = velden.velden.farmId;
+            plannedCropsId = json.data.field.plannedCrops[0]._id;
+            // console.log(plannedCropsId);
+            getCropById();
             // console.log(velden.velden)
         }).catch(err => {
             console.log(err);
@@ -40,10 +40,9 @@ function getVelden() {
     }
 }
 
-
-function getBoerderijen() {
-    if (localStorage.getItem("token")) {
-        fetch("https://plant-en-pluk.onrender.com/api/v1/farms/" + boerderijId, {
+function getCropById() {
+    if (localStorage.getItem("token") && plannedCropsId) {
+        fetch("https://plant-en-pluk.onrender.com/api/v1/crops/" + plannedCropsId, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -53,19 +52,48 @@ function getBoerderijen() {
         }).then(res => {
             return res.json();
         }).then(json => {
-            console.log(json);
-            boerderijen.boerderijen = json.data;
-            // console.log(boerderijen.boerderijen)
+            crop.value = json.data.crop;
+            // console.log(crop.value);
         }).catch(err => {
             console.log(err);
         })
     }
 }
 
-onMounted(() => {
-    getBoerderijen();
-    getVelden();
+function updatePlantingDate() {
+    const data = {
+        plantingDate: new Date().toISOString()
+    }
 
+    if (localStorage.getItem("token")) {
+        fetch("https://plant-en-pluk.onrender.com/api/v1/crops/date/" + plannedCropsId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("token"),
+            },
+            mode: "cors",
+            body: JSON.stringify(data)
+        }).then(res => {
+            return res.json();
+        }).then(json => {
+            console.log(json);
+            crop = json.data.crop;
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
+
+onMounted(() => {
+    getVelden();
+    getCropById();
 })
 
 </script>
@@ -78,10 +106,6 @@ onMounted(() => {
             </router-link>
         </div>
         <h1>Overzicht</h1>
-
-        <!-- <div v-for="boerderij in boerderijen.boerderijen" :key="boerderij.id">
-            <h2 id="boerderijnaam">Boerderij {{ boerderij.name }}</h2>
-        </div> -->
 
         <hr>
 
@@ -96,13 +120,26 @@ onMounted(() => {
                 <div class="availability"></div>
                 <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
                 <p id="grootte">{{ veld.size }} m²</p>
-                <h4>Nu aan het groeien:</h4>
+                <h4>Gewas:</h4>
                 <span id="gewassen" v-for="crop in veld.plannedCrops" :key="crop.id">{{ crop.name }}</span>
             </div>
         </div>
 
         <h3>Progressie</h3>
-
+        <div class="card-crop">
+            <h4>{{ crop.name }}</h4>
+            <!-- als plantingDate gelijk is aan null, toon dan een button met "planten" -->
+            <div v-if="crop.plantingDate == null">
+                <p>Er is nog geen progressie beschikbaar want je bent nog niet begonnen met planten.</p>
+                <button @click="updatePlantingDate">Nu planten</button>
+            </div>
+            <!-- als plantingDate niet gelijk is aan null, toon dan de progressie -->
+            <div v-else>
+                <p>Je bent begonnen met planten op {{ formatDate(crop.plantingDate) }}</p>
+                <p>Geschatte oogstdatum: {{ formatDate(crop.harvestDate) }}</p>
+                <p>Je hebt {{ crop }}% van je gewas geplant.</p>
+            </div>
+        </div>
     </div>
 </template>
 
