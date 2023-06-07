@@ -78,8 +78,13 @@ function updatePlantingDate() {
         }).then(res => {
             return res.json();
         }).then(json => {
-            console.log(json);
-            crop = json.data.crop;
+            console.log(json.crop);
+            crop = json.crop;
+
+            // console.log(crop);
+
+            // refresh de pagina
+            window.location.reload();
         }).catch(err => {
             console.log(err);
         })
@@ -121,7 +126,7 @@ onMounted(() => {
                 <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
                 <p id="grootte">{{ veld.size }} m²</p>
                 <h4>Gewas:</h4>
-                <span id="gewassen" v-for="crop in veld.plannedCrops" :key="crop.id">{{ crop.name }}</span>
+                <span id="gewassen">{{ crop.name }}</span>
             </div>
         </div>
 
