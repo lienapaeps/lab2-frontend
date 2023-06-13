@@ -35,6 +35,13 @@ export default {
         // search bar and zoom buttons
         L.Control.geocoder().addTo(this.map);
 
+        // change marker icon image from leaflet-marker-icon to custom icon
+        L.Marker.prototype.options.icon = L.icon({
+            iconUrl: '/marker-icon.png',
+            iconSize: [25, 41],
+            popupAnchor: [0, -20]
+        });
+
         // position search bar
         document.querySelector('.leaflet-control-geocoder').style.top = '20px';
         document.querySelector('.leaflet-control-geocoder').style.right = '45px';

@@ -85,15 +85,14 @@ a.add {
 }
 
 .container {
-    height: 75px;
-    width: 100%;
     margin-left: 0px;
+    overflow: hidden;
 }
 
 .content {
     position: absolute;
-    width: 70%;
     margin-left: 40px;
+    padding-bottom: 4rem;
 }
 
 .boerderijen div {
@@ -114,6 +113,10 @@ a.add {
 @media (min-width: 992px) {
     .container {
         margin-left: 25%;
+    }
+
+    .content {
+        width: 70%;
     }
 }
 </style>
