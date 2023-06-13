@@ -32,7 +32,6 @@ let userId = user.uid;
             </div>
             <div class="instellingen">
                 <h2>Instellingen</h2>
-                <ProfielCard text="Mijn gewassen" src="veld.svg" router="/" />
                 <ProfielCard text="Privacy" src="lock.svg" router="/" />
                 <ProfielCard text="Meldingen" src="bell.svg" router="/" />
             </div>
