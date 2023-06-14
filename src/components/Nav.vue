@@ -196,7 +196,8 @@ nav {
     }
 
     .logo__nav {
-    opacity: 1;
-}
+        opacity: 1;
+        position: fixed;
+    }
 }
 </style>
