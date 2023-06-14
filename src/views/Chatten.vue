@@ -1,5 +1,5 @@
 <script setup>
-import Message from '../components/Message.vue';
+import ChatBox from '../components/ChatBox.vue';
 
 if (!localStorage.getItem('token')) {
     window.location.href = "/login";
@@ -10,10 +10,14 @@ if (!localStorage.getItem('token')) {
 <template>
     <div class="container">
         <div class="content">
-            <h1>Inbox</h1>
-            <div class="messages">
-                <Message text="Matthias" src="./boer-icon.jpg" router="/chat" />
-                <Message text="Guy" src="./boer-icon.jpg" router="/chat" />
+            <div class="arrow">
+                <router-link exact to="/inbox">
+                    <img src="./../assets/left-arrow.svg" alt="arrow" />
+                </router-link>
+            </div>
+            <h1>Matthias</h1>
+            <div class="chatbox">
+                <ChatBox />
             </div>
         </div>
     </div>
@@ -28,18 +32,29 @@ if (!localStorage.getItem('token')) {
     margin-left: 0px;
 }
 
+.burger {
+    display: none;
+}
+
 h1 {
     color: var(--offWhite);
+    text-align: center;
+    width: 100%;
+    margin-top: -3rem;
 }
 
 .content {
     position: absolute;
-    width: 70%;
-    margin-left: 40px;
+    width: 100%;
 }
 
-.messages {
-    margin-top: 6rem;
+.chatbox {
+    margin-top: 5rem;
+}
+
+.arrow {
+    margin-top: 1rem;
+    margin-left: 2rem;
 }
 
 /*  desktop */
@@ -57,10 +72,6 @@ h1 {
         padding-left: 1rem;
         margin-top: 1rem;
         width: 65%;
-    }
-
-    .messages {
-        margin-top: 3rem;
     }
 }
 </style>
