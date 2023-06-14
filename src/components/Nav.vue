@@ -64,6 +64,7 @@ nav {
     position: fixed;
     opacity: 0;
     z-index: -99;
+    font-size: 2rem;
 }
 
 .nav__menu--hidden {
@@ -98,7 +99,8 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-left: 25%;
     padding: 10px 0;
 }
 
@@ -106,7 +108,7 @@ nav {
     display: flex;
     align-items: center;
     color: var(--offWhite);
-    margin: 16px;
+    margin: 1rem;
 }
 
 .active {
@@ -118,21 +120,22 @@ nav {
 }
 
 .emblem {
-    width: 20px;
-    margin-right: 6px;
+    width: 32px;
+    margin-right: 1.5rem;
     filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(7485%) hue-rotate(173deg) brightness(127%) contrast(95%);
 }
 
 .active .emblem {
-    width: 20px;
-    margin-right: 6px;
+    width: 32px;
+    margin-right: 1rem;
     filter: brightness(0) saturate(100%) invert(29%) sepia(18%) saturate(2138%) hue-rotate(118deg) brightness(90%) contrast(94%);
 }
 
 .logo__nav {
-    width: 15%;
-    margin-top: 20px;
+    width: 20%;
+    margin-top: 3.5rem;
     margin-bottom: 80px;
+    margin-left: 25%;
 }
 
 .hamburger .bar,
@@ -165,6 +168,7 @@ nav {
         position: fixed;
         z-index: 1;
         opacity: 1;
+        font-size: 1.2rem;
     }
 
     .test {
@@ -177,6 +181,14 @@ nav {
 
     .burger {
         opacity: 0;
+    }
+
+    .emblem {
+        width: 24px;
+    }
+
+    .active .emblem {
+        width: 24px;
     }
 }
 </style>
