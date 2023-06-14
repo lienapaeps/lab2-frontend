@@ -70,7 +70,7 @@ onMounted(() => {
                             <div class="availability"></div>
                             <span id="eigenaars" v-for="owner in veld.owner" :key="owner.id">{{ owner.name }}</span>
                             <p id="grootte">{{ veld.size }} m²</p>
-                            <h4>Jouw gewas:</h4>
+                            <h4>Geplante gewassen:</h4>
                             <span id="gewassen" v-for="crop in veld.plannedCrops" :key="crop.id">{{ crop.name }}</span>
 
                             <router-link class="btn" :to="'/veld/' + veld._id">Bekijk details</router-link>
@@ -105,6 +105,7 @@ a {
 
 #gewassen {
     text-transform: capitalize;
+    margin-right: 0.5rem;
 }
 
 #eigenaars {
