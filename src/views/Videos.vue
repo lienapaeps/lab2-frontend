@@ -11,22 +11,22 @@ if (!localStorage.getItem('token')) {
             <h1>Video's</h1>
             <div class="videos">
                 <div class="video-item">
-                <h3 class="video-title">Hij werkt 35 uur per week op het veld</h3>
-                <p>Gepubliceerd op 12 juni, 2023</p>
-                <iframe src="https://www.youtube.com/embed/26qTgXJKMAE" frameborder="0" allowfullscreen></iframe>
-                </div> 
-                <div class="video-item">
-                <h3 class="video-title">Hoe start je je eigen mini moestuin</h3>
-                <p>Gepubliceerd op 1 juni, 2023</p>
-                <iframe src="https://www.youtube.com/embed/heTxEsrPVdQ" frameborder="0" allowfullscreen></iframe>
+                    <h3 class="video-title">Hij werkt 35 uur per week op het veld</h3>
+                    <p>Gepubliceerd op 12 juni, 2023</p>
+                    <iframe src="https://www.youtube.com/embed/26qTgXJKMAE" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="video-item">
-                <h3 class="video-title">Je gelooft nooit wat deze mensen kunnen!</h3>
-                <p>Gepubliceerd op 23 mei, 2023</p>
-                <iframe src="https://www.youtube.com/embed/hC4lemk_YqE" frameborder="0" allowfullscreen></iframe>
-                </div>   
-    
-        </div>
+                    <h3 class="video-title">Hoe start je je eigen mini moestuin</h3>
+                    <p>Gepubliceerd op 1 juni, 2023</p>
+                    <iframe src="https://www.youtube.com/embed/heTxEsrPVdQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-item">
+                    <h3 class="video-title">Je gelooft nooit wat deze mensen kunnen!</h3>
+                    <p>Gepubliceerd op 23 mei, 2023</p>
+                    <iframe src="https://www.youtube.com/embed/hC4lemk_YqE" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+            </div>
         </div>
     </div>
 </template>
@@ -40,35 +40,36 @@ if (!localStorage.getItem('token')) {
     margin-left: 0px;
 }
 
-.videos{
+.videos {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-top: 80px;
 
 }
-.video-item{
+
+.video-item {
     background-color: white;
     padding: 1rem 2rem 1rem 2rem;
     margin-bottom: 1rem;
     border-radius: 10px;
-    box-shadow: 0px 0px 5px 0px rgba(103, 103, 103, 0.75);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.videos iframe{
+.videos iframe {
     margin-bottom: 1rem;
     width: 100%;
     height: 150px;
 }
 
-.video-title{
+.video-title {
     color: var(--deepSeaGreen800);
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 0px;
 }
 
-.videos p{
+.videos p {
     margin-top: 10px;
     margin-bottom: 10px;
     color: var(--offBlack500);
@@ -103,16 +104,16 @@ h1 {
         width: 65%;
     }
 
-    .videos{
+    .videos {
         padding-top: 0px;
     }
 
-    .video-item{
+    .video-item {
         width: auto;
     }
 
-    .videos iframe{
-        height: 240px;
+    .videos iframe {
+        height: 350px;
     }
 }
 </style>
