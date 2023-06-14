@@ -169,6 +169,10 @@ a {
     color: var(--offBlack500);
 }
 
+#eigenaars {
+    margin-right: 0.5rem;
+}
+
 hr {
     border: 0;
     height: 1px;

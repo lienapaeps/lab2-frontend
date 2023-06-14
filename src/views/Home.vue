@@ -164,6 +164,10 @@ onMounted(() => {
     margin-left: 40px;
 }
 
+#gewassen {
+    margin-right: 0.5rem;
+}
+
 .card-reel {
     display: flex;
     flex-direction: column;
