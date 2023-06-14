@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
+import Weer from '../components/Weer.vue';
 
 if (!localStorage.getItem('token')) {
     window.location.href = "/login";
@@ -143,6 +144,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
+            <Weer />
         </div>
     </div>
 </template>
