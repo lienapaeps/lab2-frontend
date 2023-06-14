@@ -102,11 +102,8 @@ nav {
     align-items: flex-start;
     height: 100%;
     margin-left: 0px;
-    padding-left: 30%;
-    padding-right: 30%;
-    margin-right: 30%;
+    padding-left: 25%;
     width: 100%;
-
 }
 
 .nav__item {
@@ -197,9 +194,9 @@ nav {
     .active .emblem {
         width: 24px;
     }
+
     .logo__nav {
     opacity: 1;
-    position: fixed;
 }
 }
 </style>
