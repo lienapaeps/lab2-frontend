@@ -23,9 +23,9 @@ window.onload = function () {
 
 <template>
     <img class="burger" src="../assets/Hamburger.svg" alt="menu">
+    <img class="logo__nav" src="/EmblemWhite.svg" alt="">
     <nav>
         <div class="nav__menu">
-            <img class="logo__nav" src="/EmblemWhite.svg" alt="">
             <div class="nav__item">
                 <img class="emblem" src="/HomeEmblem.svg" alt="home">
                 <router-link exact to="/">Home</router-link>
@@ -100,8 +100,13 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-left: 25%;
-    padding: 10px 0;
+    height: 100%;
+    margin-left: 0px;
+    padding-left: 30%;
+    padding-right: 30%;
+    margin-right: 30%;
+    width: 100%;
+
 }
 
 .nav__item {
@@ -132,10 +137,12 @@ nav {
 }
 
 .logo__nav {
-    width: 20%;
-    margin-top: 3.5rem;
-    margin-bottom: 80px;
-    margin-left: 25%;
+    position: absolute;
+    top: 60px;
+    left: 11%;
+    width: 40px;
+    z-index: 100;
+    opacity: 0;
 }
 
 .hamburger .bar,
@@ -190,5 +197,8 @@ nav {
     .active .emblem {
         width: 24px;
     }
+    .logo__nav {
+    opacity: 1;
+}
 }
 </style>

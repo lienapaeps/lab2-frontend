@@ -33,7 +33,7 @@ h1 {
 }
 
 /*  desktop */
-@media (min-width: 992px) {
+@media (min-width: 692px) {
     .container {
         background-color: var(--offWhite);
     }
