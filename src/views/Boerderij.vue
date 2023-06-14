@@ -132,13 +132,13 @@ export default {
                     for (let j = 0; j < owners.length; j++) {
                         ownerArray.push(owners[j].name);
                     }
-                    card.querySelector('#eigenaars').innerHTML = ownerArray.join(', ');
+                    card.querySelector('#eigenaars').innerHTML = "Eigenaars: " + ownerArray.join(', ');
 
                     if (ownerArray.length === 0) {
                         card.querySelector('#eigenaars').innerHTML = 'Nog geen eigenaar';
                     }
 
-                    card.querySelector('#grootte').innerHTML = field[i].size + 'm²';
+                    card.querySelector('#grootte').innerHTML = "Grootte: " + field[i].size + 'm²';
 
                     let crops = field[i].crops;
                     let cropsArray = [];
@@ -153,6 +153,7 @@ export default {
                     if (field[i].available === false || field[i].owner.length === 3) {
                         card.querySelector('.availability').classList.add('rented');
                         card.querySelector('.availability').innerHTML = 'Verhuurd';
+                        card.querySelector('.btn').classList.add('disabled');
                     } else {
                         card.querySelector('.availability').classList.add('available');
                         card.querySelector('.availability').innerHTML = 'Beschikbaar';

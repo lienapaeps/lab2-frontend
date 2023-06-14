@@ -23,9 +23,8 @@ let firstname = user.firstname;
                 <h1 class="title">Welkom terug, {{ firstname }}</h1>
             </div>
 
-            <p>Recent</p>
+            <h2>Recent</h2>
             <div class="card-reel">
-                <Card />
                 <Card />
             </div>
         </div>
