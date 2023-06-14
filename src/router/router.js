@@ -14,6 +14,7 @@ import MijnBoerderijen from '../views/MijnBoerderijen.vue';
 import ConfigBoerderij from '../views/ConfigBoerderij.vue';
 import AddVeld from '../views/AddVeld.vue';
 import HuurVeld from '../views/HuurVeld.vue';
+import Chatten from '../views/Chatten.vue';
 
 const routes = [
   { path: "/", component: Home },
@@ -31,6 +32,7 @@ const routes = [
   { path: "/profiel/mijn-boerderijen/config/:id", component: ConfigBoerderij },
   { path: "/nieuw-veld/:id", component: AddVeld },
   { path: "/huur-veld/:id", component: HuurVeld },
+  { path: "/chat", component: Chatten },
 ];
 
 const router = createRouter({
