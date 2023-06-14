@@ -45,7 +45,6 @@ if (!localStorage.getItem('token')) {
     flex-direction: column;
     justify-content: center;
     padding-top: 80px;
-    margin-left: 2rem;
 
 }
 
@@ -60,12 +59,12 @@ if (!localStorage.getItem('token')) {
 .videos iframe {
     margin-bottom: 1rem;
     width: 100%;
-    height: 100px;
+    height: 150px;
 }
 
 .video-title {
     color: var(--deepSeaGreen800);
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: 0px;
 }
@@ -74,7 +73,7 @@ if (!localStorage.getItem('token')) {
     margin-top: 10px;
     margin-bottom: 10px;
     color: var(--offBlack500);
-    font-size: 16px;
+    font-size: 14px;
     font-style: italic;
 }
 
@@ -84,8 +83,8 @@ h1 {
 
 .content {
     position: absolute;
-    width: 70%;
-    margin-left: 40px;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 /*  desktop */
@@ -107,6 +106,10 @@ h1 {
 
     .videos {
         padding-top: 0px;
+    }
+
+    .video-item{
+        width: auto;
     }
 
 
