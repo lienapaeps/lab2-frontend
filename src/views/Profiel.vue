@@ -89,7 +89,22 @@ h1,
 .logout p {
     color: var(--semanticRed);
 }
+@media (min-width: 692px){
+    .container{
+        background-color: var(--offWhite);
+    }    
 
+    h1{
+        color: var(--offBlack900);
+    }
+
+    .content {
+        margin-left: 26%;
+        padding-left: 1rem;
+        margin-top: 1rem;
+        width: 65%;
+    }
+}
 /*  desktop */
 @media (min-width: 992px) {
     .container {

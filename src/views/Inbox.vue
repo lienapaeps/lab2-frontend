@@ -27,13 +27,13 @@ h1 {
 }
 
 .content {
-    position: absolute;
-    width: 70%;
-    margin-left: 40px;
-}
+        margin-left: 25%;
+        padding-left: 1rem;
+        margin-top: 1rem;
+        width: 65%;
+    }
 
-/*  desktop */
-@media (min-width: 992px) {
+@media (min-width: 692px) {
     .container {
         background-color: var(--offWhite);
     }
@@ -41,7 +41,9 @@ h1 {
     h1 {
         color: var(--offBlack900);
     }
-
+}
+/*  desktop */
+@media (min-width: 992px) {
     .content {
         margin-left: 26%;
         padding-left: 1rem;

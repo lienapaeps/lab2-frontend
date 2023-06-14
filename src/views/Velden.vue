@@ -149,9 +149,6 @@ h1 {
         margin-left: 20px;
     }
 
-    h1 {
-        color: var(--offBlack900);
-    }
 
     #velden {
         display: flex;
@@ -166,11 +163,19 @@ h1 {
         margin-left: 25%;
     }
 
+    h1 {
+        color: var(--offBlack900);
+    }
+
     .content {
         margin-left: 25%;
         padding-left: 1rem;
         margin-top: 1rem;
         width: 65%;
+    }
+
+    .container{
+        background-color: var(--offWhite);
     }
 }
 </style>
