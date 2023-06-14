@@ -20,13 +20,7 @@ let velden = reactive({
     farmIds: [],
 })
 
-let cropId;
-
-let crop = ref({});
-
-let boerderijen = reactive({
-    boerderijen: []
-})
+let cropIds = [];
 
 function getVeldByUserId() {
     if (localStorage.getItem("token")) {
@@ -42,14 +36,18 @@ function getVeldByUserId() {
         }).then(json => {
             // console.log(json);
             velden.velden = json.data.fields;
-            // console.log(velden);
+            console.log(velden);
 
             velden.farmIds = json.data.fields.map(field => field.farmId);
 
-            cropId = velden.velden[0].plannedCrops[0]._id;
-            // console.log(cropId);
+            // cropId = velden.velden[0].plannedCrops[0]._id;
 
-            getCropById();
+            // slaag alle cropIds op in een array
+            velden.velden.forEach(veld => {
+                veld.plannedCrops.forEach(crop => {
+                    cropIds.push(crop._id);
+                })
+            })
 
         }).catch(err => {
             console.log(err);
@@ -85,31 +83,39 @@ function getFarmById(farmId) {
     }
 }
 
-function getCropById() {
+function getCropById(cropId) {
     if (localStorage.getItem("token")) {
-        fetch("https://plant-en-pluk.onrender.com/api/v1/crops/" + cropId, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("token"),
-            },
-            mode: "cors",
-        }).then(res => {
-            return res.json();
-        }).then(json => {
-            // console.log(json);
-            crop.value = json.data.crop;
+        cropIds.forEach(cropId => {
+            fetch("https://plant-en-pluk.onrender.com/api/v1/crops/" + cropId, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token"),
+                },
+                mode: "cors",
+            })
+                .then(res => res.json())
+                .then(json => {
+                    // console.log(json)
 
-        }).catch(err => {
-            console.log(err);
+                    velden.velden.forEach(veld => {
+                        veld.plannedCrops.forEach(crop => {
+                            if (crop._id == cropId) {
+                                crop.name = json.data.crop.name;
+                                crop.growthStage = json.data.crop.growthStage;
+                            }
+                        })
+                    })
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         })
     }
 }
 
 onMounted(() => {
     getVeldByUserId();
-    // getFarmById();
-    getCropById();
 })
 
 </script>
@@ -127,10 +133,13 @@ onMounted(() => {
                     <div class="card-body">
                         <p class="card-title" id="farmName">Boerderij {{ getFarmById(veld.farmId) }} {{ veld.farmName }}</p>
                         <p>{{ veld.name }}</p>
-                        <p class="card-text">{{ crop.name }} - {{ crop.growthStage }}%</p>
+                        <span id="gewassen" v-for="crop in veld.plannedCrops" :key="crop.id">{{ crop.name }}</span>
+                        <p>{{ getCropById(veld.cropId) }}</p>
+                        <p class="procent">{{ veld.plannedCrops[0].growthStage }}%</p>
                         <div class="progress-bar">
-                            <div class="progress" :style="{ width: crop.growthStage + '%' }"></div>
+                            <div class="progress" :style="{ width: veld.plannedCrops[0].growthStage + '%' }"></div>
                         </div>
+                        <router-link class="btn" :to="'/veld/' + veld._id">Bekijk details</router-link>
                     </div>
                 </div>
             </div>
@@ -168,6 +177,7 @@ onMounted(() => {
     height: 10px;
     background-color: var(--offBlack100);
     border-radius: 10px;
+    margin-bottom: 1rem;
 }
 
 .progress {
@@ -185,11 +195,18 @@ onMounted(() => {
     padding: 1em;
     margin-right: 10px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .card-title {
     font-weight: bolder;
     margin-bottom: 0;
+}
+
+.procent {
+    position: absolute;
+    right: 1rem;
+    bottom: 6rem;
 }
 
 /*  desktop */
