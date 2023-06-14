@@ -86,6 +86,13 @@ export default {
         // search bar and zoom buttons
         let geocoder = L.Control.geocoder().addTo(this.map);
 
+        // change marker icon image from leaflet-marker-icon to custom icon
+        L.Marker.prototype.options.icon = L.icon({
+            iconUrl: '/marker-icon.png',
+            iconSize: [25, 41],
+            popupAnchor: [0, -20]
+        });
+
         // get location from search
         geocoder.on("markgeocode", function (e) {
             // console.log(e.geocode.center);
